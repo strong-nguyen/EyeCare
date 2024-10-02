@@ -186,6 +186,8 @@
   <ItemGroup>
     <ClInclude Include="EyeBreak.h" />
     <ClInclude Include="EyeBreakDlg.h" />
+    <ClInclude Include="EyeCareSetting.h" />
+    <ClInclude Include="EyeCareSettingDlg.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="MessageDefine.h" />
     <ClInclude Include="pch.h" />
@@ -196,6 +198,8 @@
   <ItemGroup>
     <ClCompile Include="EyeBreak.cpp" />
     <ClCompile Include="EyeBreakDlg.cpp" />
+    <ClCompile Include="EyeCareSetting.cpp" />
+    <ClCompile Include="EyeCareSettingDlg.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

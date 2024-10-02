@@ -1,10 +1,16 @@
 #pragma once
 
-
+// User Message
 #define WM_EYEBREAK_SYSTEM_TRAY (WM_USER + 100)
-
 #define WM_EYEBREAK_MENU (WM_USER + 101)
+#define WM_EYECARE_SETTING_APPLY (WM_USER + 102)
 
+
+// Tray Menu
 #define MIT_SHOW_EYEBREAK 100
 #define MIT_EYEBREAK_SETTING 101
 #define MIT_EYEBREAK_QUIT 102
+
+
+// Timer
+#define EYECARE_DISPLAY_TIMER 1000

@@ -39,6 +39,12 @@
     <ClInclude Include="SystemTrayNoti.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="EyeCareSettingDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EyeCareSetting.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EyeBreak.cpp">
@@ -51,6 +57,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SystemTrayNoti.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EyeCareSettingDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EyeCareSetting.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

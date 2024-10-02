@@ -8,6 +8,9 @@
 #include "EyeBreakDlg.h"
 #include "afxdialogex.h"
 #include "MessageDefine.h"
+#include "EyeCareSettingDlg.h"
+
+#include <memory>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -69,7 +72,8 @@ BEGIN_MESSAGE_MAP(CEyeBreakDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_CONTINUE_WORKING, &CEyeBreakDlg::OnBnClickedContinueWorking)
 	ON_MESSAGE(WM_EYEBREAK_SYSTEM_TRAY, &CEyeBreakDlg::OnSystemTrayCallback)
 	ON_MESSAGE(WM_EYEBREAK_MENU, &CEyeBreakDlg::OnClickEyeBreakMenu)
-	ON_COMMAND(MIT_SHOW_EYEBREAK, &CEyeBreakDlg::OnShowEyeBreak)
+	ON_MESSAGE(WM_EYECARE_SETTING_APPLY, &CEyeBreakDlg::OnApplySetting)
+	ON_WM_TIMER()
 	ON_WM_CLOSE()
 END_MESSAGE_MAP()
 
@@ -167,7 +171,7 @@ LRESULT CEyeBreakDlg::OnSystemTrayCallback(WPARAM wParam, LPARAM lParam)
 	switch (LOWORD(lParam))
 	{
 	case NIN_SELECT:
-		MessageBoxW(L"click on system tray", L"Eye Break");
+		//MessageBoxW(L"click on system tray", L"Eye Break");
 		break;
 	case WM_CONTEXTMENU:
 	{
@@ -179,16 +183,39 @@ LRESULT CEyeBreakDlg::OnSystemTrayCallback(WPARAM wParam, LPARAM lParam)
 	return TRUE;
 }
 
-void CEyeBreakDlg::OnShowEyeBreak()
+void CEyeBreakDlg::ShowEyeBreak()
 {
 	ShowWindow(SW_SHOW);
+}
+
+void CEyeBreakDlg::QuitEyeCare()
+{
+	BOOL ret = KillTimer(EYECARE_DISPLAY_TIMER);
+	DestroyWindow();
+}
+
+void CEyeBreakDlg::ShowSettingDlg()
+{
+	EyeCareSettingDlg dlg;
+	dlg.DoModal();
+
+	EyeCareSetting* setting = new EyeCareSetting(dlg.GetSetting());
+	PostMessageW(WM_EYECARE_SETTING_APPLY, (WPARAM)setting, 0);
 }
 
 void CEyeBreakDlg::OnClose()
 {
 	ShowWindow(SW_HIDE);
-	//m_trayNoti.SendCloseNoti();
-	//CDialog::OnClose();
+}
+
+void CEyeBreakDlg::OnTimer(UINT_PTR nIDEvent)
+{
+	if (nIDEvent != EYECARE_DISPLAY_TIMER)
+	{
+		return;
+	}
+
+	ShowWindow(SW_SHOW);
 }
 
 LRESULT CEyeBreakDlg::OnClickEyeBreakMenu(WPARAM wParam, LPARAM lParam)
@@ -196,14 +223,30 @@ LRESULT CEyeBreakDlg::OnClickEyeBreakMenu(WPARAM wParam, LPARAM lParam)
 	switch (wParam)
 	{
 	case MIT_EYEBREAK_QUIT:
-		MessageBoxW(L"Quit", L"EyeBreak");
+		QuitEyeCare();
 		break;
 	case MIT_SHOW_EYEBREAK:
-		ShowWindow(SW_SHOW);
+		ShowEyeBreak();
+		break;
+	case MIT_EYEBREAK_SETTING:
+		ShowSettingDlg();
 		break;
 	}
 
 	return TRUE;
+}
+
+LRESULT CEyeBreakDlg::OnApplySetting(WPARAM wParam, LPARAM lParam)
+{
+	auto new_setting = std::unique_ptr<EyeCareSetting>(reinterpret_cast<EyeCareSetting*>(wParam));
+	if (!new_setting)
+	{
+		return FALSE;
+	}
+
+	SetTimer(EYECARE_DISPLAY_TIMER, new_setting->GetBreakTimeMinute() * 60 * 1000, nullptr);
+
+	return LRESULT();
 }
 
 void CEyeBreakDlg::OnBnClickedContinueWorking()

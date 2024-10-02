@@ -36,11 +36,13 @@ protected:
 
 	afx_msg LRESULT OnSystemTrayCallback(WPARAM wParam, LPARAM lParam);
 
-	afx_msg void OnShowEyeBreak();
-
 	afx_msg void OnClose();
 
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
+
 	afx_msg LRESULT OnClickEyeBreakMenu(WPARAM wParam, LPARAM lParam);
+
+	afx_msg LRESULT OnApplySetting(WPARAM wParam, LPARAM lParam);
 
 	DECLARE_MESSAGE_MAP()
 public:
@@ -48,6 +50,12 @@ public:
 
 private:
 	void ShowSystemTrayMenu(const POINT& startPoint);
+
+	void ShowEyeBreak();
+
+	void QuitEyeCare();
+
+	void ShowSettingDlg();
 
 	SystemTrayNoti m_trayNoti;
 };
