@@ -6,17 +6,20 @@
 #define IDD_ABOUTBOX                    100
 #define IDS_ABOUTBOX                    101
 #define IDD_EYEBREAK_DIALOG             102
+#define IDD_EYECARE_SETTING_DLG         103
 #define IDR_MAINFRAME                   128
 #define IDI_ICON_EYECARE                131
 #define IDC_CONTINUE_WORKING            1000
+#define IDC_BREAK_TIME_EDIT             1001
+#define IDC_AUTOSTART_CHECKBOX          1002
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        132
+#define _APS_NEXT_RESOURCE_VALUE        133
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1001
-#define _APS_NEXT_SYMED_VALUE           101
+#define _APS_NEXT_CONTROL_VALUE         1003
+#define _APS_NEXT_SYMED_VALUE           104
 #endif
 #endif
