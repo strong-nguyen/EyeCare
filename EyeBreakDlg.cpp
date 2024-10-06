@@ -17,6 +17,7 @@
 #endif
 
 
+
 // CAboutDlg dialog used for App About
 
 class CAboutDlg : public CDialogEx
@@ -57,7 +58,8 @@ END_MESSAGE_MAP()
 CEyeBreakDlg::CEyeBreakDlg(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_EYEBREAK_DIALOG, pParent)
 {
-	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+	//m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+	m_hIcon = AfxGetApp()->LoadIcon(IDI_ICON_EYECARE);
 }
 
 void CEyeBreakDlg::DoDataExchange(CDataExchange* pDX)
@@ -113,6 +115,8 @@ BOOL CEyeBreakDlg::OnInitDialog()
 	m_trayNoti.Setup(GetSafeHwnd(), WM_EYEBREAK_SYSTEM_TRAY);
 
 	m_trayNoti.SendStartNoti();
+
+	SetTimer(EYECARE_DISPLAY_TIMER, kDefaultEyeCareTimer * 60 * 1000, nullptr);
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -197,10 +201,13 @@ void CEyeBreakDlg::QuitEyeCare()
 void CEyeBreakDlg::ShowSettingDlg()
 {
 	EyeCareSettingDlg dlg;
-	dlg.DoModal();
+	INT_PTR response = dlg.DoModal();
 
-	EyeCareSetting* setting = new EyeCareSetting(dlg.GetSetting());
-	PostMessageW(WM_EYECARE_SETTING_APPLY, (WPARAM)setting, 0);
+	if (response == IDOK)
+	{
+		EyeCareSetting* setting = new EyeCareSetting(dlg.GetSetting());
+		PostMessageW(WM_EYECARE_SETTING_APPLY, (WPARAM)setting, 0);
+	}
 }
 
 void CEyeBreakDlg::OnClose()
@@ -215,7 +222,11 @@ void CEyeBreakDlg::OnTimer(UINT_PTR nIDEvent)
 		return;
 	}
 
-	ShowWindow(SW_SHOW);
+
+	int screenWidth = ::GetSystemMetrics(SM_CXMAXIMIZED);
+	int screenHeight = ::GetSystemMetrics(SM_CYMAXIMIZED);
+	RECT rect{ 0, 0, screenWidth, screenHeight };
+	::SetWindowPos(GetSafeHwnd(), HWND_TOPMOST, 0, 0, screenWidth, screenHeight, SWP_SHOWWINDOW);  // Show window as top-most
 }
 
 LRESULT CEyeBreakDlg::OnClickEyeBreakMenu(WPARAM wParam, LPARAM lParam)
@@ -244,7 +255,8 @@ LRESULT CEyeBreakDlg::OnApplySetting(WPARAM wParam, LPARAM lParam)
 		return FALSE;
 	}
 
-	SetTimer(EYECARE_DISPLAY_TIMER, new_setting->GetBreakTimeMinute() * 60 * 1000, nullptr);
+	KillTimer(EYECARE_DISPLAY_TIMER);  // Kill default timer first
+	SetTimer(EYECARE_DISPLAY_TIMER, new_setting->GetBreakTimeMilliSecond(), nullptr);
 
 	return LRESULT();
 }

@@ -23,12 +23,12 @@ public:
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
+	BOOL OnInitDialog() override;
+
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnBnClickedOk();
 
 private:
-	int m_breakTimeMinute;
-
-	BOOL m_isAutoStartChecked;
+	EyeCareSetting m_setting;
 };

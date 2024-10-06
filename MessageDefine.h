@@ -14,3 +14,9 @@
 
 // Timer
 #define EYECARE_DISPLAY_TIMER 1000
+
+
+
+constexpr int kDefaultEyeCareTimer = 1;  // 1 minute to show EyeCare
+
+constexpr int kDefaultRelaxTimer = 1;  // 1 minute to take rest

@@ -1,17 +1,24 @@
 #pragma once
 
 
+
 class EyeCareSetting
 {
 public:
-	EyeCareSetting(int breakTimeMinute = 0, BOOL isAutoStart = FALSE);
+	friend class EyeCareSettingDlg;
 
-	int GetBreakTimeMinute() const;
+	EyeCareSetting(float breakTimeMinute = 0.0f, float relaxTimeMinute = 0.0f, BOOL isAutoStart = FALSE);
+
+	int GetBreakTimeMilliSecond() const;
+
+	int GetRelaxTimeMilliSecond() const;
 
 	BOOL IsAutoStart() const;
 
 private:
-	int m_breakTimeMinute;
+	float m_breakTimeMinute;
+
+	float m_relaxTimeMinute;
 
 	BOOL m_isAutoStart;
 };
