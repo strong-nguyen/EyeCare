@@ -6,6 +6,7 @@
 #include "EyeCareSettingDlg.h"
 #include "resource.h"
 #include "MessageDefine.h"
+#include "SettingManager.h"
 
 
 // EyeCareSettingDlg dialog
@@ -17,7 +18,7 @@ EyeCareSettingDlg::EyeCareSettingDlg(CWnd* pParent /*=nullptr*/)
 	CDialogEx(IDD_EYECARE_SETTING_DLG, pParent),
 	m_setting(kDefaultEyeCareTimer, kDefaultRelaxTimer, TRUE)
 {
-
+	SettingManager::GetInstance()->LoadSetting(m_setting);
 }
 
 EyeCareSettingDlg::~EyeCareSettingDlg()
@@ -55,7 +56,6 @@ END_MESSAGE_MAP()
 
 void EyeCareSettingDlg::OnBnClickedOk()
 {
-	UpdateData(TRUE);
-
 	CDialogEx::OnOK();
+	SettingManager::GetInstance()->SaveSetting(m_setting);
 }

@@ -6,6 +6,7 @@
 #include "framework.h"
 #include "EyeBreak.h"
 #include "EyeBreakDlg.h"
+#include "AppDataManager.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -75,6 +76,8 @@ BOOL CEyeBreakApp::InitInstance()
 	//	TRACE(traceAppMsg, 0, "Warning: dialog creation failed, so application is terminating unexpectedly.\n");
 	//	TRACE(traceAppMsg, 0, "Warning: if you are using MFC controls on the dialog, you cannot #define _AFX_NO_MFC_CONTROLS_IN_DIALOGS.\n");
 	//}
+
+	AppDataManager::GetInstance();
 
 	CEyeBreakDlg dlg;
 	if (dlg.Create(IDD_EYEBREAK_DIALOG))

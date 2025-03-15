@@ -94,6 +94,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -184,6 +185,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AppDataManager.h" />
     <ClInclude Include="EyeBreak.h" />
     <ClInclude Include="EyeBreakDlg.h" />
     <ClInclude Include="EyeCareSetting.h" />
@@ -192,10 +194,12 @@
     <ClInclude Include="MessageDefine.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="SettingManager.h" />
     <ClInclude Include="SystemTrayNoti.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AppDataManager.cpp" />
     <ClCompile Include="EyeBreak.cpp" />
     <ClCompile Include="EyeBreakDlg.cpp" />
     <ClCompile Include="EyeCareSetting.cpp" />
@@ -206,6 +210,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="SettingManager.cpp" />
     <ClCompile Include="SystemTrayNoti.cpp" />
   </ItemGroup>
   <ItemGroup>

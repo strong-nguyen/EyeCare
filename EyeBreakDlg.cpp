@@ -65,6 +65,8 @@ CEyeBreakDlg::CEyeBreakDlg(CWnd* pParent /*=nullptr*/)
 void CEyeBreakDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+
+	DDX_Text(pDX, IDC_RELAX_COUNTDOWN_STATIC, m_countdownTime);
 }
 
 BEGIN_MESSAGE_MAP(CEyeBreakDlg, CDialogEx)
@@ -77,6 +79,7 @@ BEGIN_MESSAGE_MAP(CEyeBreakDlg, CDialogEx)
 	ON_MESSAGE(WM_EYECARE_SETTING_APPLY, &CEyeBreakDlg::OnApplySetting)
 	ON_WM_TIMER()
 	ON_WM_CLOSE()
+	ON_WM_SIZE()
 END_MESSAGE_MAP()
 
 
@@ -189,6 +192,7 @@ LRESULT CEyeBreakDlg::OnSystemTrayCallback(WPARAM wParam, LPARAM lParam)
 
 void CEyeBreakDlg::ShowEyeBreak()
 {
+	SetTimer(EYECARE_COUNTDONW_TIMER, 1000, nullptr);
 	ShowWindow(SW_SHOW);
 }
 
@@ -210,6 +214,18 @@ void CEyeBreakDlg::ShowSettingDlg()
 	}
 }
 
+void CEyeBreakDlg::ShowFullScreenTopMost()
+{
+	int screenWidth = ::GetSystemMetrics(SM_CXMAXIMIZED);
+	int screenHeight = ::GetSystemMetrics(SM_CYMAXIMIZED);
+
+	RECT rect{};
+	SystemParametersInfoW(SPI_GETWORKAREA, 0, &rect, 0);
+	::SetWindowPos(GetSafeHwnd(), HWND_TOPMOST, 0, 0, rect.right, rect.bottom, SWP_SHOWWINDOW);  // Show window as top-most
+
+	SetTimer(EYECARE_COUNTDONW_TIMER, 1000, nullptr);
+}
+
 void CEyeBreakDlg::OnClose()
 {
 	ShowWindow(SW_HIDE);
@@ -217,16 +233,48 @@ void CEyeBreakDlg::OnClose()
 
 void CEyeBreakDlg::OnTimer(UINT_PTR nIDEvent)
 {
-	if (nIDEvent != EYECARE_DISPLAY_TIMER)
+	if (nIDEvent == EYECARE_DISPLAY_TIMER)
+	{
+		ShowFullScreenTopMost();
+	}
+	else if (nIDEvent == EYECARE_RELAX_TIMER)
+	{
+		ShowWindow(SW_HIDE);
+		KillTimer(EYECARE_RELAX_TIMER);
+	}
+	else if (nIDEvent == EYECARE_COUNTDONW_TIMER)
+	{
+		--m_relaxTime;
+		m_countdownTime.Format(L"%d second", m_relaxTime);
+		UpdateData(FALSE);
+
+		if (m_relaxTime == 0)
+		{
+			ShowWindow(SW_HIDE);
+			KillTimer(EYECARE_COUNTDONW_TIMER);
+			m_relaxTime = 5;
+		}
+	}
+}
+
+void CEyeBreakDlg::OnSize(UINT nType, int cx, int cy)
+{
+	CWnd* continueWorkingBtn = GetDlgItem(IDC_CONTINUE_WORKING);
+	CWnd* countdownText = GetDlgItem(IDC_RELAX_COUNTDOWN_STATIC);
+	if (!continueWorkingBtn || !countdownText)
 	{
 		return;
 	}
 
+	// Adapt position of continue working button when dialog size has changed
+	CRect rect;
+	continueWorkingBtn->GetWindowRect(&rect);
+	continueWorkingBtn->SetWindowPos(nullptr, cx / 2, cy / 2, rect.Width(), rect.Height(), SWP_SHOWWINDOW);
 
-	int screenWidth = ::GetSystemMetrics(SM_CXMAXIMIZED);
-	int screenHeight = ::GetSystemMetrics(SM_CYMAXIMIZED);
-	RECT rect{ 0, 0, screenWidth, screenHeight };
-	::SetWindowPos(GetSafeHwnd(), HWND_TOPMOST, 0, 0, screenWidth, screenHeight, SWP_SHOWWINDOW);  // Show window as top-most
+	countdownText->GetWindowRect(&rect);
+	countdownText->SetWindowPos(nullptr, cx / 2, cy / 2 + 50, rect.Width(), rect.Height(), SWP_SHOWWINDOW);
+
+	return;
 }
 
 LRESULT CEyeBreakDlg::OnClickEyeBreakMenu(WPARAM wParam, LPARAM lParam)
@@ -237,7 +285,7 @@ LRESULT CEyeBreakDlg::OnClickEyeBreakMenu(WPARAM wParam, LPARAM lParam)
 		QuitEyeCare();
 		break;
 	case MIT_SHOW_EYEBREAK:
-		ShowEyeBreak();
+		ShowFullScreenTopMost();
 		break;
 	case MIT_EYEBREAK_SETTING:
 		ShowSettingDlg();

@@ -40,6 +40,8 @@ protected:
 
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 
+	afx_msg void OnSize(UINT nType, int cx, int cy);
+
 	afx_msg LRESULT OnClickEyeBreakMenu(WPARAM wParam, LPARAM lParam);
 
 	afx_msg LRESULT OnApplySetting(WPARAM wParam, LPARAM lParam);
@@ -57,5 +59,11 @@ private:
 
 	void ShowSettingDlg();
 
+	void ShowFullScreenTopMost();
+
 	SystemTrayNoti m_trayNoti;
+
+	CString m_countdownTime;
+
+	int m_relaxTime = 5;
 };
