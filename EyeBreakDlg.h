@@ -6,6 +6,10 @@
 
 
 #include "SystemTrayNoti.h"
+#include "AppState.h"
+
+
+class EyeCareSetting;
 
 
 // CEyeBreakDlg dialog
@@ -53,8 +57,6 @@ public:
 private:
 	void ShowSystemTrayMenu(const POINT& startPoint);
 
-	void ShowEyeBreak();
-
 	void QuitEyeCare();
 
 	void ShowSettingDlg();
@@ -65,5 +67,9 @@ private:
 
 	CString m_countdownTime;
 
-	int m_relaxTime = 5;
+	int m_relaxTime;
+
+	EyeCareSetting* m_app_setting;
+
+	AppState m_appState;
 };

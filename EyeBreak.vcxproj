@@ -186,6 +186,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AppDataManager.h" />
+    <ClInclude Include="AppState.h" />
+    <ClInclude Include="Common.h" />
     <ClInclude Include="EyeBreak.h" />
     <ClInclude Include="EyeBreakDlg.h" />
     <ClInclude Include="EyeCareSetting.h" />
@@ -200,6 +202,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AppDataManager.cpp" />
+    <ClCompile Include="AppState.cpp" />
+    <ClCompile Include="Common.cpp" />
     <ClCompile Include="EyeBreak.cpp" />
     <ClCompile Include="EyeBreakDlg.cpp" />
     <ClCompile Include="EyeCareSetting.cpp" />

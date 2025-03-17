@@ -7,6 +7,7 @@
 #include "EyeBreak.h"
 #include "EyeBreakDlg.h"
 #include "AppDataManager.h"
+#include "SettingManager.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -78,6 +79,9 @@ BOOL CEyeBreakApp::InitInstance()
 	//}
 
 	AppDataManager::GetInstance();
+
+	SettingManager::GetInstance();
+
 
 	CEyeBreakDlg dlg;
 	if (dlg.Create(IDD_EYEBREAK_DIALOG))

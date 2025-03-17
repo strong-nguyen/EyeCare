@@ -1,5 +1,6 @@
 #pragma once
 
+#include <string>
 
 class SystemTrayNoti
 {
@@ -12,6 +13,7 @@ public:
 
 	BOOL SendCloseNoti();
 
+	BOOL SendStatusNoti(const std::wstring& status);
 
 private:
 	HWND m_listenWnd;

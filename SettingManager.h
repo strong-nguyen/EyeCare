@@ -1,7 +1,7 @@
 #pragma once
 
-#include "EyeCareSetting.h"
 #include <filesystem>
+#include "EyeCareSetting.h"
 
 
 class SettingManager
@@ -9,15 +9,19 @@ class SettingManager
 public:
 	static SettingManager* GetInstance();
 
-	void LoadSetting(EyeCareSetting& setting);
-
 	void SaveSetting(const EyeCareSetting& setting);
 
+	EyeCareSetting* GetSetting();
+
 private:
-	SettingManager() = default;
+	SettingManager();
+
+	void LoadSetting();
 
 	std::wstring ReadIniFile(LPCWSTR section, LPCWSTR key, LPCWSTR default_value);
 
 	static std::filesystem::path config_path;
+
+	EyeCareSetting m_setting;
 };
 

@@ -9,8 +9,11 @@
 #include "afxdialogex.h"
 #include "MessageDefine.h"
 #include "EyeCareSettingDlg.h"
+#include "SettingManager.h"
+#include "Common.h"
 
 #include <memory>
+#include <thread>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -57,9 +60,12 @@ END_MESSAGE_MAP()
 
 CEyeBreakDlg::CEyeBreakDlg(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_EYEBREAK_DIALOG, pParent)
+	, m_app_setting(SettingManager::GetInstance()->GetSetting())
 {
 	//m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 	m_hIcon = AfxGetApp()->LoadIcon(IDI_ICON_EYECARE);
+	m_relaxTime = m_app_setting->GetRelaxTimeMilliSecond() / 1000;
+	m_appState = AppState{ WorkingMode::Working, m_app_setting->GetBreakTimeMilliSecond() / 1000 };
 }
 
 void CEyeBreakDlg::DoDataExchange(CDataExchange* pDX)
@@ -119,7 +125,9 @@ BOOL CEyeBreakDlg::OnInitDialog()
 
 	m_trayNoti.SendStartNoti();
 
-	SetTimer(EYECARE_DISPLAY_TIMER, kDefaultEyeCareTimer * 60 * 1000, nullptr);
+	SetTimer(EYECARE_DISPLAY_TIMER, m_app_setting->GetBreakTimeMilliSecond(), nullptr);
+
+	SetTimer(EYECARE_APP_STATE_COUNTDONW_TIMER, 1000, nullptr);
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -178,27 +186,30 @@ LRESULT CEyeBreakDlg::OnSystemTrayCallback(WPARAM wParam, LPARAM lParam)
 	switch (LOWORD(lParam))
 	{
 	case NIN_SELECT:
-		//MessageBoxW(L"click on system tray", L"Eye Break");
+		// Left click on system tray
 		break;
 	case WM_CONTEXTMENU:
 	{
+		// Right click on system tray
 		POINT const pt = { LOWORD(wParam), HIWORD(wParam) };
 		ShowSystemTrayMenu(pt);
+		break;
+	}
+	case WM_MOUSEMOVE:
+	{
+		// Hover on system tray
+		//m_trayNoti.SendStatusNoti(m_appState.GetAppStatus());
 		break;
 	}
 	}
 	return TRUE;
 }
 
-void CEyeBreakDlg::ShowEyeBreak()
-{
-	SetTimer(EYECARE_COUNTDONW_TIMER, 1000, nullptr);
-	ShowWindow(SW_SHOW);
-}
-
 void CEyeBreakDlg::QuitEyeCare()
 {
+	m_trayNoti.SendCloseNoti();
 	BOOL ret = KillTimer(EYECARE_DISPLAY_TIMER);
+	KillTimer(EYECARE_RELAX_COUNTDONW_TIMER);
 	DestroyWindow();
 }
 
@@ -221,9 +232,17 @@ void CEyeBreakDlg::ShowFullScreenTopMost()
 
 	RECT rect{};
 	SystemParametersInfoW(SPI_GETWORKAREA, 0, &rect, 0);
-	::SetWindowPos(GetSafeHwnd(), HWND_TOPMOST, 0, 0, rect.right, rect.bottom, SWP_SHOWWINDOW);  // Show window as top-most
 
-	SetTimer(EYECARE_COUNTDONW_TIMER, 1000, nullptr);
+#ifdef _DEBUG
+	HWND hWndInsertAfter = HWND_TOP;
+#else
+	HWND hWndInsertAfter = HWND_TOPMOST;
+#endif
+	::SetWindowPos(GetSafeHwnd(), hWndInsertAfter, 0, 0, rect.right, rect.bottom, SWP_SHOWWINDOW);  // Show window as top-most
+
+	KillTimer(EYECARE_DISPLAY_TIMER);
+	KillTimer(EYECARE_RELAX_COUNTDONW_TIMER);
+	SetTimer(EYECARE_RELAX_COUNTDONW_TIMER, 1000, nullptr);
 }
 
 void CEyeBreakDlg::OnClose()
@@ -235,25 +254,27 @@ void CEyeBreakDlg::OnTimer(UINT_PTR nIDEvent)
 {
 	if (nIDEvent == EYECARE_DISPLAY_TIMER)
 	{
+		m_appState = { WorkingMode::Relax, m_app_setting->GetRelaxTimeMilliSecond() / 1000 };
 		ShowFullScreenTopMost();
 	}
-	else if (nIDEvent == EYECARE_RELAX_TIMER)
-	{
-		ShowWindow(SW_HIDE);
-		KillTimer(EYECARE_RELAX_TIMER);
-	}
-	else if (nIDEvent == EYECARE_COUNTDONW_TIMER)
+	else if (nIDEvent == EYECARE_RELAX_COUNTDONW_TIMER)
 	{
 		--m_relaxTime;
-		m_countdownTime.Format(L"%d second", m_relaxTime);
+		m_countdownTime.Format(L"Relax time: %s", Common::FormatTime(m_relaxTime).c_str());
 		UpdateData(FALSE);
 
 		if (m_relaxTime == 0)
 		{
 			ShowWindow(SW_HIDE);
-			KillTimer(EYECARE_COUNTDONW_TIMER);
-			m_relaxTime = 5;
+			KillTimer(EYECARE_RELAX_COUNTDONW_TIMER);
+			SetTimer(EYECARE_DISPLAY_TIMER, m_app_setting->GetBreakTimeMilliSecond(), nullptr);
+			m_relaxTime = m_app_setting->GetRelaxTimeMilliSecond() / 1000;  // Reset
+			m_appState = { WorkingMode::Working, m_app_setting->GetBreakTimeMilliSecond() / 1000 };
 		}
+	}
+	else if (nIDEvent == EYECARE_APP_STATE_COUNTDONW_TIMER)
+	{
+		--m_appState.remainTimeSeconds;
 	}
 }
 
@@ -285,6 +306,7 @@ LRESULT CEyeBreakDlg::OnClickEyeBreakMenu(WPARAM wParam, LPARAM lParam)
 		QuitEyeCare();
 		break;
 	case MIT_SHOW_EYEBREAK:
+		m_appState = { WorkingMode::Relax, m_app_setting->GetRelaxTimeMilliSecond() / 1000 };
 		ShowFullScreenTopMost();
 		break;
 	case MIT_EYEBREAK_SETTING:
@@ -305,6 +327,7 @@ LRESULT CEyeBreakDlg::OnApplySetting(WPARAM wParam, LPARAM lParam)
 
 	KillTimer(EYECARE_DISPLAY_TIMER);  // Kill default timer first
 	SetTimer(EYECARE_DISPLAY_TIMER, new_setting->GetBreakTimeMilliSecond(), nullptr);
+	m_relaxTime = new_setting->GetRelaxTimeMilliSecond() / 1000;
 
 	return LRESULT();
 }
@@ -312,6 +335,13 @@ LRESULT CEyeBreakDlg::OnApplySetting(WPARAM wParam, LPARAM lParam)
 void CEyeBreakDlg::OnBnClickedContinueWorking()
 {
 	ShowWindow(SW_HIDE);
+	KillTimer(EYECARE_RELAX_COUNTDONW_TIMER);
+	SetTimer(EYECARE_DISPLAY_TIMER, m_app_setting->GetBreakTimeMilliSecond(), nullptr);
+	m_relaxTime = m_app_setting->GetRelaxTimeMilliSecond() / 1000;  // Reset
+	m_appState = { WorkingMode::Working, m_app_setting->GetBreakTimeMilliSecond() / 1000 };
+
+	m_countdownTime = "";
+	UpdateData(FALSE);
 }
 
 void CEyeBreakDlg::ShowSystemTrayMenu(const POINT& startPoint)

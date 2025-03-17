@@ -15,10 +15,9 @@ IMPLEMENT_DYNAMIC(EyeCareSettingDlg, CDialogEx)
 
 EyeCareSettingDlg::EyeCareSettingDlg(CWnd* pParent /*=nullptr*/)
 	:
-	CDialogEx(IDD_EYECARE_SETTING_DLG, pParent),
-	m_setting(kDefaultEyeCareTimer, kDefaultRelaxTimer, TRUE)
+	CDialogEx(IDD_EYECARE_SETTING_DLG, pParent)
 {
-	SettingManager::GetInstance()->LoadSetting(m_setting);
+	m_setting = *(SettingManager::GetInstance()->GetSetting());
 }
 
 EyeCareSettingDlg::~EyeCareSettingDlg()
