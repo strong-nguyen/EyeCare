@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="EyeBreak.h">
+    <ClInclude Include="EyeCare.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="EyeBreakDlg.h">
+    <ClInclude Include="EyeCareDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="framework.h">
@@ -59,10 +59,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="EyeBreak.cpp">
+    <ClCompile Include="EyeCare.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="EyeBreakDlg.cpp">
+    <ClCompile Include="EyeCareDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">

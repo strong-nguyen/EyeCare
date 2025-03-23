@@ -11,14 +11,14 @@
 #include "resource.h"		// main symbols
 
 
-// CEyeBreakApp:
+// CEyeCareApp:
 // See EyeBreak.cpp for the implementation of this class
 //
 
-class CEyeBreakApp : public CWinApp
+class CEyeCareApp : public CWinApp
 {
 public:
-	CEyeBreakApp();
+	CEyeCareApp();
 
 // Overrides
 public:
@@ -29,4 +29,4 @@ public:
 	DECLARE_MESSAGE_MAP()
 };
 
-extern CEyeBreakApp theApp;
+extern CEyeCareApp theApp;

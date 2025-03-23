@@ -3,6 +3,9 @@
 #include <filesystem>
 
 
+/*
+* Manage the local appdata folder of EyeCare
+*/
 class AppDataManager
 {
 public:

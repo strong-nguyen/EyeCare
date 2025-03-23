@@ -1,7 +1,7 @@
 #pragma once
 
 
-
+// Setting model class
 class EyeCareSetting
 {
 public:

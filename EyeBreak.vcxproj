@@ -188,8 +188,8 @@
     <ClInclude Include="AppDataManager.h" />
     <ClInclude Include="AppState.h" />
     <ClInclude Include="Common.h" />
-    <ClInclude Include="EyeBreak.h" />
-    <ClInclude Include="EyeBreakDlg.h" />
+    <ClInclude Include="EyeCare.h" />
+    <ClInclude Include="EyeCareDlg.h" />
     <ClInclude Include="EyeCareSetting.h" />
     <ClInclude Include="EyeCareSettingDlg.h" />
     <ClInclude Include="framework.h" />
@@ -204,8 +204,8 @@
     <ClCompile Include="AppDataManager.cpp" />
     <ClCompile Include="AppState.cpp" />
     <ClCompile Include="Common.cpp" />
-    <ClCompile Include="EyeBreak.cpp" />
-    <ClCompile Include="EyeBreakDlg.cpp" />
+    <ClCompile Include="EyeCare.cpp" />
+    <ClCompile Include="EyeCareDlg.cpp" />
     <ClCompile Include="EyeCareSetting.cpp" />
     <ClCompile Include="EyeCareSettingDlg.cpp" />
     <ClCompile Include="pch.cpp">

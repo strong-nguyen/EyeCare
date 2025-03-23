@@ -4,8 +4,8 @@
 
 #include "pch.h"
 #include "framework.h"
-#include "EyeBreak.h"
-#include "EyeBreakDlg.h"
+#include "EyeCare.h"
+#include "EyeCareDlg.h"
 #include "AppDataManager.h"
 #include "SettingManager.h"
 
@@ -14,30 +14,30 @@
 #endif
 
 
-// CEyeBreakApp
+// CEyeCareApp
 
-BEGIN_MESSAGE_MAP(CEyeBreakApp, CWinApp)
+BEGIN_MESSAGE_MAP(CEyeCareApp, CWinApp)
 	ON_COMMAND(ID_HELP, &CWinApp::OnHelp)
 END_MESSAGE_MAP()
 
 
-// CEyeBreakApp construction
+// CEyeCareApp construction
 
-CEyeBreakApp::CEyeBreakApp()
+CEyeCareApp::CEyeCareApp()
 {
 	// TODO: add construction code here,
 	// Place all significant initialization in InitInstance
 }
 
 
-// The one and only CEyeBreakApp object
+// The one and only CEyeCareApp object
 
-CEyeBreakApp theApp;
+CEyeCareApp theApp;
 
 
-// CEyeBreakApp initialization
+// CEyeCareApp initialization
 
-BOOL CEyeBreakApp::InitInstance()
+BOOL CEyeCareApp::InitInstance()
 {
 	CWinApp::InitInstance();
 
@@ -58,7 +58,7 @@ BOOL CEyeBreakApp::InitInstance()
 	// such as the name of your company or organization
 	SetRegistryKey(_T("Local AppWizard-Generated Applications"));
 
-	//CEyeBreakDlg dlg;
+	//CEyeCareDlg dlg;
 	//m_pMainWnd = &dlg;
 	//INT_PTR nResponse = dlg.DoModal();
 
@@ -83,7 +83,7 @@ BOOL CEyeBreakApp::InitInstance()
 	SettingManager::GetInstance();
 
 
-	CEyeBreakDlg dlg;
+	CEyeCareDlg dlg;
 	if (dlg.Create(IDD_EYEBREAK_DIALOG))
 	{
 		dlg.ShowWindow(SW_HIDE);

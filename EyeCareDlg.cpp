@@ -4,8 +4,8 @@
 
 #include "pch.h"
 #include "framework.h"
-#include "EyeBreak.h"
-#include "EyeBreakDlg.h"
+#include "EyeCare.h"
+#include "EyeCareDlg.h"
 #include "afxdialogex.h"
 #include "MessageDefine.h"
 #include "EyeCareSettingDlg.h"
@@ -54,11 +54,11 @@ BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 
-// CEyeBreakDlg dialog
+// CEyeCareDlg dialog
 
 
 
-CEyeBreakDlg::CEyeBreakDlg(CWnd* pParent /*=nullptr*/)
+CEyeCareDlg::CEyeCareDlg(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_EYEBREAK_DIALOG, pParent)
 	, m_app_setting(SettingManager::GetInstance()->GetSetting())
 {
@@ -68,30 +68,30 @@ CEyeBreakDlg::CEyeBreakDlg(CWnd* pParent /*=nullptr*/)
 	m_appState = AppState{ WorkingMode::Working, m_app_setting->GetBreakTimeMilliSecond() / 1000 };
 }
 
-void CEyeBreakDlg::DoDataExchange(CDataExchange* pDX)
+void CEyeCareDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
 
 	DDX_Text(pDX, IDC_RELAX_COUNTDOWN_STATIC, m_countdownTime);
 }
 
-BEGIN_MESSAGE_MAP(CEyeBreakDlg, CDialogEx)
+BEGIN_MESSAGE_MAP(CEyeCareDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
-	ON_BN_CLICKED(IDC_CONTINUE_WORKING, &CEyeBreakDlg::OnBnClickedContinueWorking)
-	ON_MESSAGE(WM_EYEBREAK_SYSTEM_TRAY, &CEyeBreakDlg::OnSystemTrayCallback)
-	ON_MESSAGE(WM_EYEBREAK_MENU, &CEyeBreakDlg::OnClickEyeBreakMenu)
-	ON_MESSAGE(WM_EYECARE_SETTING_APPLY, &CEyeBreakDlg::OnApplySetting)
+	ON_BN_CLICKED(IDC_CONTINUE_WORKING, &CEyeCareDlg::OnBnClickedContinueWorking)
+	ON_MESSAGE(WM_EYEBREAK_SYSTEM_TRAY, &CEyeCareDlg::OnSystemTrayCallback)
+	ON_MESSAGE(WM_EYEBREAK_MENU, &CEyeCareDlg::OnClickEyeBreakMenu)
+	ON_MESSAGE(WM_EYECARE_SETTING_APPLY, &CEyeCareDlg::OnApplySetting)
 	ON_WM_TIMER()
 	ON_WM_CLOSE()
 	ON_WM_SIZE()
 END_MESSAGE_MAP()
 
 
-// CEyeBreakDlg message handlers
+// CEyeCareDlg message handlers
 
-BOOL CEyeBreakDlg::OnInitDialog()
+BOOL CEyeCareDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
@@ -132,7 +132,7 @@ BOOL CEyeBreakDlg::OnInitDialog()
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
 
-void CEyeBreakDlg::OnSysCommand(UINT nID, LPARAM lParam)
+void CEyeCareDlg::OnSysCommand(UINT nID, LPARAM lParam)
 {
 	if ((nID & 0xFFF0) == IDM_ABOUTBOX)
 	{
@@ -149,7 +149,7 @@ void CEyeBreakDlg::OnSysCommand(UINT nID, LPARAM lParam)
 //  to draw the icon.  For MFC applications using the document/view model,
 //  this is automatically done for you by the framework.
 
-void CEyeBreakDlg::OnPaint()
+void CEyeCareDlg::OnPaint()
 {
 	if (IsIconic())
 	{
@@ -176,12 +176,12 @@ void CEyeBreakDlg::OnPaint()
 
 // The system calls this function to obtain the cursor to display while the user drags
 //  the minimized window.
-HCURSOR CEyeBreakDlg::OnQueryDragIcon()
+HCURSOR CEyeCareDlg::OnQueryDragIcon()
 {
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
-LRESULT CEyeBreakDlg::OnSystemTrayCallback(WPARAM wParam, LPARAM lParam)
+LRESULT CEyeCareDlg::OnSystemTrayCallback(WPARAM wParam, LPARAM lParam)
 {
 	switch (LOWORD(lParam))
 	{
@@ -205,7 +205,7 @@ LRESULT CEyeBreakDlg::OnSystemTrayCallback(WPARAM wParam, LPARAM lParam)
 	return TRUE;
 }
 
-void CEyeBreakDlg::QuitEyeCare()
+void CEyeCareDlg::QuitEyeCare()
 {
 	m_trayNoti.SendCloseNoti();
 	BOOL ret = KillTimer(EYECARE_DISPLAY_TIMER);
@@ -213,7 +213,7 @@ void CEyeBreakDlg::QuitEyeCare()
 	DestroyWindow();
 }
 
-void CEyeBreakDlg::ShowSettingDlg()
+void CEyeCareDlg::ShowSettingDlg()
 {
 	EyeCareSettingDlg dlg;
 	INT_PTR response = dlg.DoModal();
@@ -225,7 +225,7 @@ void CEyeBreakDlg::ShowSettingDlg()
 	}
 }
 
-void CEyeBreakDlg::ShowFullScreenTopMost()
+void CEyeCareDlg::ShowFullScreenTopMost()
 {
 	int screenWidth = ::GetSystemMetrics(SM_CXMAXIMIZED);
 	int screenHeight = ::GetSystemMetrics(SM_CYMAXIMIZED);
@@ -245,12 +245,12 @@ void CEyeBreakDlg::ShowFullScreenTopMost()
 	SetTimer(EYECARE_RELAX_COUNTDONW_TIMER, 1000, nullptr);
 }
 
-void CEyeBreakDlg::OnClose()
+void CEyeCareDlg::OnClose()
 {
 	ShowWindow(SW_HIDE);
 }
 
-void CEyeBreakDlg::OnTimer(UINT_PTR nIDEvent)
+void CEyeCareDlg::OnTimer(UINT_PTR nIDEvent)
 {
 	if (nIDEvent == EYECARE_DISPLAY_TIMER)
 	{
@@ -278,7 +278,7 @@ void CEyeBreakDlg::OnTimer(UINT_PTR nIDEvent)
 	}
 }
 
-void CEyeBreakDlg::OnSize(UINT nType, int cx, int cy)
+void CEyeCareDlg::OnSize(UINT nType, int cx, int cy)
 {
 	CWnd* continueWorkingBtn = GetDlgItem(IDC_CONTINUE_WORKING);
 	CWnd* countdownText = GetDlgItem(IDC_RELAX_COUNTDOWN_STATIC);
@@ -298,7 +298,7 @@ void CEyeBreakDlg::OnSize(UINT nType, int cx, int cy)
 	return;
 }
 
-LRESULT CEyeBreakDlg::OnClickEyeBreakMenu(WPARAM wParam, LPARAM lParam)
+LRESULT CEyeCareDlg::OnClickEyeBreakMenu(WPARAM wParam, LPARAM lParam)
 {
 	switch (wParam)
 	{
@@ -317,7 +317,7 @@ LRESULT CEyeBreakDlg::OnClickEyeBreakMenu(WPARAM wParam, LPARAM lParam)
 	return TRUE;
 }
 
-LRESULT CEyeBreakDlg::OnApplySetting(WPARAM wParam, LPARAM lParam)
+LRESULT CEyeCareDlg::OnApplySetting(WPARAM wParam, LPARAM lParam)
 {
 	auto new_setting = std::unique_ptr<EyeCareSetting>(reinterpret_cast<EyeCareSetting*>(wParam));
 	if (!new_setting)
@@ -332,7 +332,7 @@ LRESULT CEyeBreakDlg::OnApplySetting(WPARAM wParam, LPARAM lParam)
 	return LRESULT();
 }
 
-void CEyeBreakDlg::OnBnClickedContinueWorking()
+void CEyeCareDlg::OnBnClickedContinueWorking()
 {
 	ShowWindow(SW_HIDE);
 	KillTimer(EYECARE_RELAX_COUNTDONW_TIMER);
@@ -344,7 +344,7 @@ void CEyeBreakDlg::OnBnClickedContinueWorking()
 	UpdateData(FALSE);
 }
 
-void CEyeBreakDlg::ShowSystemTrayMenu(const POINT& startPoint)
+void CEyeCareDlg::ShowSystemTrayMenu(const POINT& startPoint)
 {
 	SetForegroundWindow();
 

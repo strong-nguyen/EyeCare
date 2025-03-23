@@ -12,12 +12,12 @@
 class EyeCareSetting;
 
 
-// CEyeBreakDlg dialog
-class CEyeBreakDlg : public CDialogEx
+// CEyeCareDlg dialog
+class CEyeCareDlg : public CDialogEx
 {
 // Construction
 public:
-	CEyeBreakDlg(CWnd* pParent = nullptr);	// standard constructor
+	CEyeCareDlg(CWnd* pParent = nullptr);	// standard constructor
 
 // Dialog Data
 #ifdef AFX_DESIGN_TIME

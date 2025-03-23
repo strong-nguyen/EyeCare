@@ -8,6 +8,10 @@ enum class WorkingMode
 	Relax
 };
 
+/*
+* The state of EyeCare app.
+* It has 2 states: Working -> user is working/ Relax -> user is relaxing
+*/
 struct AppState
 {
 	WorkingMode mode;
