@@ -218,13 +218,12 @@
     <ClCompile Include="SystemTrayNoti.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="EyeBreak.rc" />
+    <ResourceCompile Include="EyeCare.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\EyeBreak.rc2" />
+    <None Include="res\EyeCare.rc2" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\EyeBreak.ico" />
     <Image Include="res\EyeCare.ico" />
     <Image Include="res\icon1.ico" />
   </ItemGroup>
