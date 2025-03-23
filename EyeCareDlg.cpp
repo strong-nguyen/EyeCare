@@ -1,5 +1,5 @@
 
-// EyeBreakDlg.cpp : implementation file
+// EyeCareDlg.cpp : implementation file
 //
 
 #include "pch.h"

@@ -1,5 +1,5 @@
 
-// EyeBreak.cpp : Defines the class behaviors for the application.
+// EyeCare.cpp : Defines the class behaviors for the application.
 //
 
 #include "pch.h"

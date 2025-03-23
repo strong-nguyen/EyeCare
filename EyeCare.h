@@ -1,5 +1,5 @@
 
-// EyeBreak.h : main header file for the PROJECT_NAME application
+// EyeCare.h : main header file for the PROJECT_NAME application
 //
 
 #pragma once
@@ -12,7 +12,7 @@
 
 
 // CEyeCareApp:
-// See EyeBreak.cpp for the implementation of this class
+// See EyeCare.cpp for the implementation of this class
 //
 
 class CEyeCareApp : public CWinApp
