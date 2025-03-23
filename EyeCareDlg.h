@@ -11,6 +11,7 @@
 
 
 class EyeCareSetting;
+class TimerManager;
 
 
 // CEyeCareDlg dialog
@@ -62,7 +63,7 @@ private:
 
 	void ShowSettingDlg();
 
-	void ShowFullScreenTopMost();
+	void ShowEyeCareDlg();
 
 	void ShowAboutDlg();
 
@@ -76,5 +77,5 @@ private:
 
 	AppState m_appState;
 
-
+	std::unique_ptr<TimerManager> m_timerManager;
 };

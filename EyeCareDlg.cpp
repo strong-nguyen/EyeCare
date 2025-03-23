@@ -100,8 +100,8 @@ BOOL CEyeCareDlg::OnInitDialog()
 	m_trayNoti.Setup(GetSafeHwnd(), WM_EYEBREAK_SYSTEM_TRAY);
 	m_trayNoti.SendStartNoti();
 
-	SetTimer(EYECARE_DISPLAY_TIMER, m_appSetting->GetBreakTimeMilliSecond(), nullptr);
-	SetTimer(EYECARE_APP_STATE_COUNTDONW_TIMER, 1000, nullptr);
+	m_timerManager = std::make_unique<TimerManager>(this);
+	m_timerManager->OnStart();
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -182,8 +182,7 @@ LRESULT CEyeCareDlg::OnSystemTrayCallback(WPARAM wParam, LPARAM lParam)
 void CEyeCareDlg::QuitEyeCare()
 {
 	m_trayNoti.SendCloseNoti();
-	BOOL ret = KillTimer(EYECARE_DISPLAY_TIMER);
-	KillTimer(EYECARE_RELAX_COUNTDONW_TIMER);
+	m_timerManager->OnQuit();
 	DestroyWindow();
 }
 
@@ -199,7 +198,7 @@ void CEyeCareDlg::ShowSettingDlg()
 	}
 }
 
-void CEyeCareDlg::ShowFullScreenTopMost()
+void CEyeCareDlg::ShowEyeCareDlg()
 {
 	int screenWidth = ::GetSystemMetrics(SM_CXMAXIMIZED);
 	int screenHeight = ::GetSystemMetrics(SM_CYMAXIMIZED);
@@ -213,10 +212,6 @@ void CEyeCareDlg::ShowFullScreenTopMost()
 	HWND hWndInsertAfter = HWND_TOPMOST;
 #endif
 	::SetWindowPos(GetSafeHwnd(), hWndInsertAfter, 0, 0, rect.right, rect.bottom, SWP_SHOWWINDOW);  // Show window as top-most
-
-	KillTimer(EYECARE_DISPLAY_TIMER);
-	KillTimer(EYECARE_RELAX_COUNTDONW_TIMER);
-	SetTimer(EYECARE_RELAX_COUNTDONW_TIMER, 1000, nullptr);
 }
 
 void CEyeCareDlg::ShowAboutDlg()
@@ -235,7 +230,8 @@ void CEyeCareDlg::OnTimer(UINT_PTR nIDEvent)
 	if (nIDEvent == EYECARE_DISPLAY_TIMER)
 	{
 		m_appState = { WorkingMode::Relax, m_appSetting->GetRelaxTimeMilliSecond() / 1000 };
-		ShowFullScreenTopMost();
+		ShowEyeCareDlg();
+		m_timerManager->OnShowingEyeCare();
 	}
 	else if (nIDEvent == EYECARE_RELAX_COUNTDONW_TIMER)
 	{
@@ -246,8 +242,7 @@ void CEyeCareDlg::OnTimer(UINT_PTR nIDEvent)
 		if (m_relaxTime == 0)
 		{
 			ShowWindow(SW_HIDE);
-			KillTimer(EYECARE_RELAX_COUNTDONW_TIMER);
-			SetTimer(EYECARE_DISPLAY_TIMER, m_appSetting->GetBreakTimeMilliSecond(), nullptr);
+			m_timerManager->OnHideEyeCare();
 			m_relaxTime = m_appSetting->GetRelaxTimeMilliSecond() / 1000;  // Reset
 			m_appState = { WorkingMode::Working, m_appSetting->GetBreakTimeMilliSecond() / 1000 };
 		}
@@ -287,7 +282,8 @@ LRESULT CEyeCareDlg::OnClickEyeBreakMenu(WPARAM wParam, LPARAM lParam)
 		break;
 	case MIT_SHOW_EYEBREAK:
 		m_appState = { WorkingMode::Relax, m_appSetting->GetRelaxTimeMilliSecond() / 1000 };
-		ShowFullScreenTopMost();
+		ShowEyeCareDlg();
+		m_timerManager->OnShowingEyeCare();
 		break;
 	case MIT_EYEBREAK_SETTING:
 		ShowSettingDlg();
@@ -308,8 +304,7 @@ LRESULT CEyeCareDlg::OnApplySetting(WPARAM wParam, LPARAM lParam)
 		return FALSE;
 	}
 
-	KillTimer(EYECARE_DISPLAY_TIMER);  // Kill default timer first
-	SetTimer(EYECARE_DISPLAY_TIMER, new_setting->GetBreakTimeMilliSecond(), nullptr);
+	m_timerManager->OnApplyNewSetting();
 	m_relaxTime = new_setting->GetRelaxTimeMilliSecond() / 1000;
 
 	return LRESULT();
@@ -318,8 +313,7 @@ LRESULT CEyeCareDlg::OnApplySetting(WPARAM wParam, LPARAM lParam)
 void CEyeCareDlg::OnBnClickedContinueWorking()
 {
 	ShowWindow(SW_HIDE);
-	KillTimer(EYECARE_RELAX_COUNTDONW_TIMER);
-	SetTimer(EYECARE_DISPLAY_TIMER, m_appSetting->GetBreakTimeMilliSecond(), nullptr);
+	m_timerManager->OnHideEyeCare();
 	m_relaxTime = m_appSetting->GetRelaxTimeMilliSecond() / 1000;  // Reset
 	m_appState = { WorkingMode::Working, m_appSetting->GetBreakTimeMilliSecond() / 1000 };
 
