@@ -56,16 +56,13 @@ END_MESSAGE_MAP()
 
 // CEyeCareDlg dialog
 
-
-
 CEyeCareDlg::CEyeCareDlg(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_EYEBREAK_DIALOG, pParent)
-	, m_app_setting(SettingManager::GetInstance()->GetSetting())
+	, m_appSetting(SettingManager::GetInstance()->GetSetting())
 {
-	//m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 	m_hIcon = AfxGetApp()->LoadIcon(IDI_ICON_EYECARE);
-	m_relaxTime = m_app_setting->GetRelaxTimeMilliSecond() / 1000;
-	m_appState = AppState{ WorkingMode::Working, m_app_setting->GetBreakTimeMilliSecond() / 1000 };
+	m_relaxTime = m_appSetting->GetRelaxTimeMilliSecond() / 1000;
+	m_appState = AppState{ WorkingMode::Working, m_appSetting->GetBreakTimeMilliSecond() / 1000 };
 }
 
 void CEyeCareDlg::DoDataExchange(CDataExchange* pDX)
@@ -95,38 +92,15 @@ BOOL CEyeCareDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
-	// Add "About..." menu item to system menu.
-
-	// IDM_ABOUTBOX must be in the system command range.
-	ASSERT((IDM_ABOUTBOX & 0xFFF0) == IDM_ABOUTBOX);
-	ASSERT(IDM_ABOUTBOX < 0xF000);
-
-	CMenu* pSysMenu = GetSystemMenu(FALSE);
-	if (pSysMenu != nullptr)
-	{
-		BOOL bNameValid;
-		CString strAboutMenu;
-		bNameValid = strAboutMenu.LoadString(IDS_ABOUTBOX);
-		ASSERT(bNameValid);
-		if (!strAboutMenu.IsEmpty())
-		{
-			pSysMenu->AppendMenu(MF_SEPARATOR);
-			pSysMenu->AppendMenu(MF_STRING, IDM_ABOUTBOX, strAboutMenu);
-		}
-	}
-
 	// Set the icon for this dialog.  The framework does this automatically
 	//  when the application's main window is not a dialog
 	SetIcon(m_hIcon, TRUE);			// Set big icon
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
-	// TODO: Add extra initialization here
 	m_trayNoti.Setup(GetSafeHwnd(), WM_EYEBREAK_SYSTEM_TRAY);
-
 	m_trayNoti.SendStartNoti();
 
-	SetTimer(EYECARE_DISPLAY_TIMER, m_app_setting->GetBreakTimeMilliSecond(), nullptr);
-
+	SetTimer(EYECARE_DISPLAY_TIMER, m_appSetting->GetBreakTimeMilliSecond(), nullptr);
 	SetTimer(EYECARE_APP_STATE_COUNTDONW_TIMER, 1000, nullptr);
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
@@ -245,6 +219,12 @@ void CEyeCareDlg::ShowFullScreenTopMost()
 	SetTimer(EYECARE_RELAX_COUNTDONW_TIMER, 1000, nullptr);
 }
 
+void CEyeCareDlg::ShowAboutDlg()
+{
+	CAboutDlg dlg;
+	dlg.DoModal();
+}
+
 void CEyeCareDlg::OnClose()
 {
 	ShowWindow(SW_HIDE);
@@ -254,7 +234,7 @@ void CEyeCareDlg::OnTimer(UINT_PTR nIDEvent)
 {
 	if (nIDEvent == EYECARE_DISPLAY_TIMER)
 	{
-		m_appState = { WorkingMode::Relax, m_app_setting->GetRelaxTimeMilliSecond() / 1000 };
+		m_appState = { WorkingMode::Relax, m_appSetting->GetRelaxTimeMilliSecond() / 1000 };
 		ShowFullScreenTopMost();
 	}
 	else if (nIDEvent == EYECARE_RELAX_COUNTDONW_TIMER)
@@ -267,9 +247,9 @@ void CEyeCareDlg::OnTimer(UINT_PTR nIDEvent)
 		{
 			ShowWindow(SW_HIDE);
 			KillTimer(EYECARE_RELAX_COUNTDONW_TIMER);
-			SetTimer(EYECARE_DISPLAY_TIMER, m_app_setting->GetBreakTimeMilliSecond(), nullptr);
-			m_relaxTime = m_app_setting->GetRelaxTimeMilliSecond() / 1000;  // Reset
-			m_appState = { WorkingMode::Working, m_app_setting->GetBreakTimeMilliSecond() / 1000 };
+			SetTimer(EYECARE_DISPLAY_TIMER, m_appSetting->GetBreakTimeMilliSecond(), nullptr);
+			m_relaxTime = m_appSetting->GetRelaxTimeMilliSecond() / 1000;  // Reset
+			m_appState = { WorkingMode::Working, m_appSetting->GetBreakTimeMilliSecond() / 1000 };
 		}
 	}
 	else if (nIDEvent == EYECARE_APP_STATE_COUNTDONW_TIMER)
@@ -306,11 +286,14 @@ LRESULT CEyeCareDlg::OnClickEyeBreakMenu(WPARAM wParam, LPARAM lParam)
 		QuitEyeCare();
 		break;
 	case MIT_SHOW_EYEBREAK:
-		m_appState = { WorkingMode::Relax, m_app_setting->GetRelaxTimeMilliSecond() / 1000 };
+		m_appState = { WorkingMode::Relax, m_appSetting->GetRelaxTimeMilliSecond() / 1000 };
 		ShowFullScreenTopMost();
 		break;
 	case MIT_EYEBREAK_SETTING:
 		ShowSettingDlg();
+		break;
+	case MIT_EYEBREAK_ABOUT:
+		ShowAboutDlg();
 		break;
 	}
 
@@ -336,9 +319,9 @@ void CEyeCareDlg::OnBnClickedContinueWorking()
 {
 	ShowWindow(SW_HIDE);
 	KillTimer(EYECARE_RELAX_COUNTDONW_TIMER);
-	SetTimer(EYECARE_DISPLAY_TIMER, m_app_setting->GetBreakTimeMilliSecond(), nullptr);
-	m_relaxTime = m_app_setting->GetRelaxTimeMilliSecond() / 1000;  // Reset
-	m_appState = { WorkingMode::Working, m_app_setting->GetBreakTimeMilliSecond() / 1000 };
+	SetTimer(EYECARE_DISPLAY_TIMER, m_appSetting->GetBreakTimeMilliSecond(), nullptr);
+	m_relaxTime = m_appSetting->GetRelaxTimeMilliSecond() / 1000;  // Reset
+	m_appState = { WorkingMode::Working, m_appSetting->GetBreakTimeMilliSecond() / 1000 };
 
 	m_countdownTime = "";
 	UpdateData(FALSE);
@@ -352,6 +335,7 @@ void CEyeCareDlg::ShowSystemTrayMenu(const POINT& startPoint)
 
 	AppendMenu(menu, MF_STRING, MIT_SHOW_EYEBREAK, L"Show EyeCare");
 	AppendMenu(menu, MF_STRING, MIT_EYEBREAK_SETTING, L"Setting");
+	AppendMenu(menu, MF_STRING, MIT_EYEBREAK_ABOUT, L"About");
 	AppendMenu(menu, MF_STRING, MIT_EYEBREAK_QUIT, L"Quit");
 
 	int ret = TrackPopupMenuEx(menu, TPM_CENTERALIGN | TPM_LEFTBUTTON | TPM_RETURNCMD, startPoint.x, startPoint.y, GetSafeHwnd(), nullptr);

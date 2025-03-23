@@ -7,6 +7,7 @@
 
 #include "SystemTrayNoti.h"
 #include "AppState.h"
+#include "TimerManager.h"
 
 
 class EyeCareSetting;
@@ -63,13 +64,17 @@ private:
 
 	void ShowFullScreenTopMost();
 
+	void ShowAboutDlg();
+
 	SystemTrayNoti m_trayNoti;
 
 	CString m_countdownTime;
 
 	int m_relaxTime;
 
-	EyeCareSetting* m_app_setting;
+	EyeCareSetting* m_appSetting;
 
 	AppState m_appState;
+
+
 };

@@ -199,6 +199,7 @@
     <ClInclude Include="SettingManager.h" />
     <ClInclude Include="SystemTrayNoti.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TimerManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AppDataManager.cpp" />
@@ -216,6 +217,7 @@
     </ClCompile>
     <ClCompile Include="SettingManager.cpp" />
     <ClCompile Include="SystemTrayNoti.cpp" />
+    <ClCompile Include="TimerManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="EyeCare.rc" />
