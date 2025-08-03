@@ -8,6 +8,8 @@
 #include "EyeCareDlg.h"
 #include "AppDataManager.h"
 #include "SettingManager.h"
+#include <Logger.h>
+#include "PipeServer.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -21,6 +23,8 @@ BEGIN_MESSAGE_MAP(CEyeCareApp, CWinApp)
 END_MESSAGE_MAP()
 
 
+CommonLib::Logger CommonLib::log;
+
 // CEyeCareApp construction
 
 CEyeCareApp::CEyeCareApp()
@@ -33,6 +37,11 @@ CEyeCareApp::CEyeCareApp()
 // The one and only CEyeCareApp object
 
 CEyeCareApp theApp;
+
+static void Log(const std::wstring& tag, const std::wstring& msg)
+{
+	CommonLib::log(tag).Error(msg.c_str());
+}
 
 
 // CEyeCareApp initialization
@@ -82,6 +91,12 @@ BOOL CEyeCareApp::InitInstance()
 
 	SettingManager::GetInstance();
 
+	CommonLib::LoggerBuilder builder;
+	builder.SetRootPath(AppDataManager::GetInstance()->GetAppDataPath());
+	CommonLib::log = builder.BuildLogger();
+
+	PipeServer pipeServer(L"EyeCare", &Log);
+	pipeServer.Start();
 
 	CEyeCareDlg dlg;
 	if (dlg.Create(IDD_EYEBREAK_DIALOG))

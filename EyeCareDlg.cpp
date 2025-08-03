@@ -14,44 +14,11 @@
 
 #include <memory>
 #include <thread>
+#include <PipeClient.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
-
-
-
-// CAboutDlg dialog used for App About
-
-class CAboutDlg : public CDialogEx
-{
-public:
-	CAboutDlg();
-
-// Dialog Data
-#ifdef AFX_DESIGN_TIME
-	enum { IDD = IDD_ABOUTBOX };
-#endif
-
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-
-// Implementation
-protected:
-	DECLARE_MESSAGE_MAP()
-};
-
-CAboutDlg::CAboutDlg() : CDialogEx(IDD_ABOUTBOX)
-{
-}
-
-void CAboutDlg::DoDataExchange(CDataExchange* pDX)
-{
-	CDialogEx::DoDataExchange(pDX);
-}
-
-BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
-END_MESSAGE_MAP()
 
 
 // CEyeCareDlg dialog
@@ -108,15 +75,7 @@ BOOL CEyeCareDlg::OnInitDialog()
 
 void CEyeCareDlg::OnSysCommand(UINT nID, LPARAM lParam)
 {
-	if ((nID & 0xFFF0) == IDM_ABOUTBOX)
-	{
-		CAboutDlg dlgAbout;
-		dlgAbout.DoModal();
-	}
-	else
-	{
-		CDialogEx::OnSysCommand(nID, lParam);
-	}
+	CDialogEx::OnSysCommand(nID, lParam);
 }
 
 // If you add a minimize button to your dialog, you will need the code below
@@ -188,13 +147,17 @@ void CEyeCareDlg::QuitEyeCare()
 
 void CEyeCareDlg::ShowSettingDlg()
 {
-	EyeCareSettingDlg dlg;
-	INT_PTR response = dlg.DoModal();
+	//EyeCareSettingDlg dlg;
+	//INT_PTR response = dlg.DoModal();
 
-	if (response == IDOK)
+	//if (response == IDOK)
+	//{
+	//	EyeCareSetting* setting = new EyeCareSetting(dlg.GetSetting());
+	//	PostMessageW(WM_EYECARE_SETTING_APPLY, (WPARAM)setting, 0);
+	//}
+	if (PipeClient client; client.Connect(L"EyeCareUIPipe"))
 	{
-		EyeCareSetting* setting = new EyeCareSetting(dlg.GetSetting());
-		PostMessageW(WM_EYECARE_SETTING_APPLY, (WPARAM)setting, 0);
+		client.Notify("showSettingWindow");
 	}
 }
 
@@ -216,8 +179,10 @@ void CEyeCareDlg::ShowEyeCareDlg()
 
 void CEyeCareDlg::ShowAboutDlg()
 {
-	CAboutDlg dlg;
-	dlg.DoModal();
+	if (PipeClient client; client.Connect(L"EyeCareUIPipe"))
+	{
+		client.Notify("showAboutWindow");
+	}
 }
 
 void CEyeCareDlg::OnClose()
@@ -333,10 +298,6 @@ void CEyeCareDlg::ShowSystemTrayMenu(const POINT& startPoint)
 	AppendMenu(menu, MF_STRING, MIT_EYEBREAK_QUIT, L"Quit");
 
 	int ret = TrackPopupMenuEx(menu, TPM_CENTERALIGN | TPM_LEFTBUTTON | TPM_RETURNCMD, startPoint.x, startPoint.y, GetSafeHwnd(), nullptr);
-
-	CStringA log;
-	log.Format("menu item: %d\n", ret);
-	OutputDebugStringA(log.GetString());
 
 	PostMessageW(WM_EYEBREAK_MENU, ret, 0);
 }
