@@ -10,6 +10,7 @@
 #include "SettingManager.h"
 #include <Logger.h>
 #include "PipeServer.h"
+#include "UIProcessManager.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -98,6 +99,8 @@ BOOL CEyeCareApp::InitInstance()
 	PipeServer pipeServer(L"EyeCare", &Log);
 	pipeServer.Start();
 
+	UIProcessManager::GetInstance()->StartUIProcess();
+
 	CEyeCareDlg dlg;
 	if (dlg.Create(IDD_EYEBREAK_DIALOG))
 	{
@@ -119,5 +122,11 @@ BOOL CEyeCareApp::InitInstance()
 	// Since the dialog has been closed, return FALSE so that we exit the
 	//  application, rather than start the application's message pump.
 	return FALSE;
+}
+
+BOOL CEyeCareApp::ExitInstance()
+{
+	UIProcessManager::GetInstance()->StopUIProcess();
+	return CWinApp::ExitInstance();
 }
 

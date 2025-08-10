@@ -60,6 +60,9 @@
     <ClInclude Include="TimerManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="UIProcessManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EyeCare.cpp">
@@ -93,6 +96,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TimerManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UIProcessManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

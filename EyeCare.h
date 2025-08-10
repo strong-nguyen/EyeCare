@@ -24,6 +24,8 @@ public:
 public:
 	virtual BOOL InitInstance();
 
+	BOOL ExitInstance() override;
+
 // Implementation
 
 	DECLARE_MESSAGE_MAP()

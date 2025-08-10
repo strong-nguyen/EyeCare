@@ -203,6 +203,7 @@
     <ClInclude Include="SystemTrayNoti.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TimerManager.h" />
+    <ClInclude Include="UIProcessManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AppDataManager.cpp" />
@@ -221,6 +222,7 @@
     <ClCompile Include="SettingManager.cpp" />
     <ClCompile Include="SystemTrayNoti.cpp" />
     <ClCompile Include="TimerManager.cpp" />
+    <ClCompile Include="UIProcessManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="EyeCare.rc" />

@@ -32,7 +32,7 @@ namespace EyeCareUI
 
             Task.Run(() =>
             {
-                _pipeServer.Start();
+                _pipeServer?.Start();
             });
 
             Task.Run(() =>
@@ -76,6 +76,12 @@ namespace EyeCareUI
                     {
                         Setting setting = new Setting();
                         setting.Show();
+                    });
+                    break;
+                case "quit":
+                    Application.Current.Dispatcher.BeginInvoke(() =>
+                    {
+                        Application.Current.Shutdown();
                     });
                     break;
                 default:
