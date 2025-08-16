@@ -7,7 +7,6 @@
 
 #include "SystemTrayNoti.h"
 #include "AppState.h"
-#include "TimerManager.h"
 
 
 class EyeCareSetting;
@@ -63,10 +62,11 @@ private:
 
 	void ShowSettingDlg();
 
-	void ShowEyeCareDlg();
+	void ShowCountdownDlg();
 
 	void ShowAboutDlg();
 
+	// Manage system tray notification
 	SystemTrayNoti m_trayNoti;
 
 	CString m_countdownTime;
@@ -76,6 +76,4 @@ private:
 	EyeCareSetting* m_appSetting;
 
 	AppState m_appState;
-
-	std::unique_ptr<TimerManager> m_timerManager;
 };

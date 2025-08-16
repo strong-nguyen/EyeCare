@@ -7,6 +7,7 @@ using EyeCareUI.ViewModel;
 using PipeCS;
 using EyeCareUI.View;
 using System.Collections.Concurrent;
+using EyeCareUI.Services;
 
 namespace EyeCareUI
 {
@@ -18,8 +19,18 @@ namespace EyeCareUI
         protected override void OnStartup(StartupEventArgs e)
         {
             var serviceCollections = new ServiceCollection();
-            serviceCollections.AddSingleton<AboutViewModel>();
             serviceCollections.AddTransient<MainWindow>();
+            serviceCollections.AddSingleton<CountdownWindow>();
+            serviceCollections.AddSingleton<About>();
+            serviceCollections.AddSingleton<Setting>();
+
+            // Services
+            serviceCollections.AddSingleton<WindowService>();
+
+            // View model
+            serviceCollections.AddSingleton<CountdownViewModel>();
+            serviceCollections.AddSingleton<AboutViewModel>();
+            serviceCollections.AddSingleton<SettingViewModel>();
 
             IServiceProvider provider = serviceCollections.BuildServiceProvider();
             Ioc.Default.ConfigureServices(provider);
@@ -50,8 +61,8 @@ namespace EyeCareUI
                 }
             });
 
-            var mainWindow = Ioc.Default.GetRequiredService<MainWindow>();
-            mainWindow.Show();
+            var mainWnd = Ioc.Default.GetRequiredService<MainWindow>();
+            mainWnd.Show();
         }
 
         protected override void OnExit(ExitEventArgs e)
@@ -62,20 +73,25 @@ namespace EyeCareUI
 
         private void HandlePipeMessage(string message)
         {
+            var windowService = Ioc.Default.GetRequiredService<WindowService>();
             switch(message)
             {
                 case "showAboutWindow":
                     Application.Current.Dispatcher.BeginInvoke(() =>
                     {
-                        About about = new About();
-                        about.Show();
+                        windowService.ShowWindow("AboutWindow", true);
                     });
                     break;
                 case "showSettingWindow":
                     Application.Current.Dispatcher.BeginInvoke(() =>
                     {
-                        Setting setting = new Setting();
-                        setting.Show();
+                        windowService.ShowWindow("SettingWindow", true);
+                    });
+                    break;
+                case "showCountdownWindow":
+                    Application.Current.Dispatcher.BeginInvoke(() =>
+                    {
+                        windowService.ShowWindow("CountdownWindow", true);
                     });
                     break;
                 case "quit":

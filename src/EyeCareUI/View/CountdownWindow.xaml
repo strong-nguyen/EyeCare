@@ -13,6 +13,6 @@
       <RowDefinition Height="Auto" />
       </Grid.RowDefinitions>
     <TextBlock Grid.Row="0" Text="05:59" FontSize="60" FontWeight="Bold" Width="200" TextAlignment="Center"/>
-    <Button Grid.Row="2" Background="Blue" Foreground="White" FontSize="50">Exit</Button>
+    <Button Grid.Row="2" Background="Blue" Foreground="White" FontSize="50" Command="{Binding ExitCountdownCommand}">Exit</Button>
   </Grid>
 </Window>

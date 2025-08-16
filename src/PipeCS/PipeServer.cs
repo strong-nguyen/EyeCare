@@ -18,7 +18,7 @@ namespace PipeCS
         private bool _stop = false;
         public PipeServer(string pipeName, Action<string> onReceivedMsg)
         {
-            _server = new NamedPipeServerStream(pipeName, PipeDirection.InOut, 1, PipeTransmissionMode.Message, PipeOptions.Asynchronous, 1024, 1024);
+            _server = new NamedPipeServerStream(pipeName, PipeDirection.InOut, 10, PipeTransmissionMode.Message, PipeOptions.Asynchronous, 1024, 1024);
             _onReceivedMsg = onReceivedMsg;
         }
 

@@ -67,9 +67,6 @@ BOOL CEyeCareDlg::OnInitDialog()
 	m_trayNoti.Setup(GetSafeHwnd(), WM_EYEBREAK_SYSTEM_TRAY);
 	m_trayNoti.SendStartNoti();
 
-	m_timerManager = std::make_unique<TimerManager>(this);
-	m_timerManager->OnStart();
-
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
 
@@ -118,22 +115,22 @@ LRESULT CEyeCareDlg::OnSystemTrayCallback(WPARAM wParam, LPARAM lParam)
 {
 	switch (LOWORD(lParam))
 	{
-	case NIN_SELECT:
-		// Left click on system tray
-		break;
-	case WM_CONTEXTMENU:
-	{
-		// Right click on system tray
-		POINT const pt = { LOWORD(wParam), HIWORD(wParam) };
-		ShowSystemTrayMenu(pt);
-		break;
-	}
-	case WM_MOUSEMOVE:
-	{
-		// Hover on system tray
-		//m_trayNoti.SendStatusNoti(m_appState.GetAppStatus());
-		break;
-	}
+		case NIN_SELECT:
+			// Left click on system tray
+			break;
+		case WM_CONTEXTMENU:
+		{
+			// Right click on system tray
+			POINT const pt = { LOWORD(wParam), HIWORD(wParam) };
+			ShowSystemTrayMenu(pt);
+			break;
+		}
+		case WM_MOUSEMOVE:
+		{
+			// Hover on system tray
+			//m_trayNoti.SendStatusNoti(m_appState.GetAppStatus());
+			break;
+		}
 	}
 	return TRUE;
 }
@@ -141,40 +138,23 @@ LRESULT CEyeCareDlg::OnSystemTrayCallback(WPARAM wParam, LPARAM lParam)
 void CEyeCareDlg::QuitEyeCare()
 {
 	m_trayNoti.SendCloseNoti();
-	m_timerManager->OnQuit();
 	DestroyWindow();
 }
 
 void CEyeCareDlg::ShowSettingDlg()
 {
-	//EyeCareSettingDlg dlg;
-	//INT_PTR response = dlg.DoModal();
-
-	//if (response == IDOK)
-	//{
-	//	EyeCareSetting* setting = new EyeCareSetting(dlg.GetSetting());
-	//	PostMessageW(WM_EYECARE_SETTING_APPLY, (WPARAM)setting, 0);
-	//}
 	if (PipeClient client; client.Connect(L"EyeCareUIPipe"))
 	{
 		client.Notify("showSettingWindow");
 	}
 }
 
-void CEyeCareDlg::ShowEyeCareDlg()
+void CEyeCareDlg::ShowCountdownDlg()
 {
-	int screenWidth = ::GetSystemMetrics(SM_CXMAXIMIZED);
-	int screenHeight = ::GetSystemMetrics(SM_CYMAXIMIZED);
-
-	RECT rect{};
-	SystemParametersInfoW(SPI_GETWORKAREA, 0, &rect, 0);
-
-#ifdef _DEBUG
-	HWND hWndInsertAfter = HWND_TOP;
-#else
-	HWND hWndInsertAfter = HWND_TOPMOST;
-#endif
-	::SetWindowPos(GetSafeHwnd(), hWndInsertAfter, 0, 0, rect.right, rect.bottom, SWP_SHOWWINDOW);  // Show window as top-most
+	if (PipeClient client; client.Connect(L"EyeCareUIPipe"))
+	{
+		client.Notify("showCountdownWindow");
+	}
 }
 
 void CEyeCareDlg::ShowAboutDlg()
@@ -195,8 +175,7 @@ void CEyeCareDlg::OnTimer(UINT_PTR nIDEvent)
 	if (nIDEvent == EYECARE_DISPLAY_TIMER)
 	{
 		m_appState = { WorkingMode::Relax, m_appSetting->GetRelaxTimeMilliSecond() / 1000 };
-		ShowEyeCareDlg();
-		m_timerManager->OnShowingEyeCare();
+		ShowCountdownDlg();
 	}
 	else if (nIDEvent == EYECARE_RELAX_COUNTDONW_TIMER)
 	{
@@ -207,7 +186,6 @@ void CEyeCareDlg::OnTimer(UINT_PTR nIDEvent)
 		if (m_relaxTime == 0)
 		{
 			ShowWindow(SW_HIDE);
-			m_timerManager->OnHideEyeCare();
 			m_relaxTime = m_appSetting->GetRelaxTimeMilliSecond() / 1000;  // Reset
 			m_appState = { WorkingMode::Working, m_appSetting->GetBreakTimeMilliSecond() / 1000 };
 		}
@@ -247,8 +225,7 @@ LRESULT CEyeCareDlg::OnClickEyeBreakMenu(WPARAM wParam, LPARAM lParam)
 		break;
 	case MIT_SHOW_EYEBREAK:
 		m_appState = { WorkingMode::Relax, m_appSetting->GetRelaxTimeMilliSecond() / 1000 };
-		ShowEyeCareDlg();
-		m_timerManager->OnShowingEyeCare();
+		ShowCountdownDlg();
 		break;
 	case MIT_EYEBREAK_SETTING:
 		ShowSettingDlg();
@@ -269,7 +246,6 @@ LRESULT CEyeCareDlg::OnApplySetting(WPARAM wParam, LPARAM lParam)
 		return FALSE;
 	}
 
-	m_timerManager->OnApplyNewSetting();
 	m_relaxTime = new_setting->GetRelaxTimeMilliSecond() / 1000;
 
 	return LRESULT();
@@ -278,7 +254,6 @@ LRESULT CEyeCareDlg::OnApplySetting(WPARAM wParam, LPARAM lParam)
 void CEyeCareDlg::OnBnClickedContinueWorking()
 {
 	ShowWindow(SW_HIDE);
-	m_timerManager->OnHideEyeCare();
 	m_relaxTime = m_appSetting->GetRelaxTimeMilliSecond() / 1000;  // Reset
 	m_appState = { WorkingMode::Working, m_appSetting->GetBreakTimeMilliSecond() / 1000 };
 
@@ -292,7 +267,7 @@ void CEyeCareDlg::ShowSystemTrayMenu(const POINT& startPoint)
 
 	HMENU menu = ::CreatePopupMenu();
 
-	AppendMenu(menu, MF_STRING, MIT_SHOW_EYEBREAK, L"Show EyeCare");
+	AppendMenu(menu, MF_STRING, MIT_SHOW_EYEBREAK, L"Take A Break");
 	AppendMenu(menu, MF_STRING, MIT_EYEBREAK_SETTING, L"Setting");
 	AppendMenu(menu, MF_STRING, MIT_EYEBREAK_ABOUT, L"About");
 	AppendMenu(menu, MF_STRING, MIT_EYEBREAK_QUIT, L"Quit");

@@ -26,7 +26,7 @@ namespace EyeCareUI.View
             InitializeComponent();
             var vm = Ioc.Default.GetRequiredService<AboutViewModel>();
             this.DataContext = vm;
-            vm.CloseAction = new Action(this.Close);
+            vm.CloseAction = new Action(this.Hide);
         }
     }
 }
