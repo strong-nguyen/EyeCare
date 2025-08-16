@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using EyeCareUI.Model;
 using EyeCareUI.Services;
 using EyeCareUI.Util;
 using System;
@@ -15,11 +16,9 @@ namespace EyeCareUI.ViewModel
 {
     internal partial class SettingViewModel : ObservableObject
     {
-        public Window? Wnd { get; set; }
-
         private WindowService _windowService = Ioc.Default.GetRequiredService<WindowService>();
 
-        private IniFile _iniFile;
+        private readonly SettingService _settingService = Ioc.Default.GetRequiredService<SettingService>();
 
         [ObservableProperty]
         string _breakTime = String.Empty;
@@ -32,27 +31,13 @@ namespace EyeCareUI.ViewModel
 
         public SettingViewModel()
         {
-            string localAppDataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            var configFile = Path.Combine(localAppDataPath, "EyeCare\\config.ini");
-            _iniFile = new IniFile(configFile);
-
-            ReadConfig();
+            BreakTime = _settingService.GetBreakTimeMinutes().ToString();
+            RelaxTime = _settingService.GetCountdownTimeMinutes().ToString();
+            IsAutoStart = _settingService.IsAutoStart();
         }
 
         [RelayCommand]
         void OK()
-        {
-            UpdateConfig();
-            _windowService.ShowWindow("SettingWindow", false);
-        }
-
-        [RelayCommand]
-        void Cancel()
-        {
-            _windowService.ShowWindow("SettingWindow", false);
-        }
-
-        private void UpdateConfig()
         {
             bool ret = double.TryParse(BreakTime, out double breakTime);
             if (!ret)
@@ -65,36 +50,22 @@ namespace EyeCareUI.ViewModel
             if (!ret)
             {
                 MessageBox.Show("Break In Time is invalid format");
+                return;
             }
 
-            var breakTimeMs = (Int64)(breakTime * 60 * 1000);
-            var relaxTimeMs = (Int64)(relaxTime * 60 * 1000);
-            int isAutoStart = IsAutoStart ? 1 : 0;
+            SettingModel setting = new SettingModel { BreakTimeMinutes = (int)breakTime, CountdownTimeMinutes = (int)relaxTime, IsAutoStart = IsAutoStart };
+            _settingService.UpdateConfig(setting);
 
-            _iniFile.WriteValue("AppConfig", "BreakTimeMs", breakTimeMs.ToString());
-            _iniFile.WriteValue("AppConfig", "RelaxTimeMs", relaxTimeMs.ToString());
-            _iniFile.WriteValue("AppConfig", "IsAutoStart", isAutoStart.ToString());
+            var timerService = Ioc.Default.GetRequiredService<TimerService>();
+            timerService.OnUpdateSetting();
+
+            _windowService.ShowWindow("SettingWindow", false);
         }
 
-        private void ReadConfig()
+        [RelayCommand]
+        void Cancel()
         {
-            bool ret = Int64.TryParse(_iniFile.ReadValue("AppConfig", "BreakTimeMs"), out long val1);
-            if (ret)
-            {
-                BreakTime = (val1 / 1000 / 60).ToString();
-            }
-
-            ret = Int64.TryParse(_iniFile.ReadValue("AppConfig", "RelaxTimeMs"), out long val2);
-            if (ret)
-            {
-                RelaxTime = (val2 / 1000 / 60).ToString();
-            }
-
-            ret = int.TryParse(_iniFile.ReadValue("AppConfig", "IsAutoStart"), out int val3);
-            if (ret)
-            {
-                IsAutoStart = (val3 == 1);
-            }
+            _windowService.ShowWindow("SettingWindow", false);
         }
     }
 }

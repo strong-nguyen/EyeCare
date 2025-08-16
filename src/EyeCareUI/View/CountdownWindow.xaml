@@ -4,15 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EyeCareUI.View"
+        xmlns:converter="clr-namespace:EyeCareUI.Converter"
         mc:Ignorable="d"
-        Title="CountdownWindow" Height="450" Width="800" MinHeight="450" MinWidth="800">
+        Title="CountdownWindow" Height="450" Width="800" MinHeight="450" MinWidth="800"
+        WindowStartupLocation="CenterScreen">
+  <Window.Resources>
+    <converter:SecondToMinuteConverter x:Key="SecondToMinuteConverter"/>
+  </Window.Resources>
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto"/>
       <RowDefinition Height="20"/>
       <RowDefinition Height="Auto" />
       </Grid.RowDefinitions>
-    <TextBlock Grid.Row="0" Text="05:59" FontSize="60" FontWeight="Bold" Width="200" TextAlignment="Center"/>
+    <TextBlock Grid.Row="0" Text="{Binding CountdownSecond, Converter={StaticResource SecondToMinuteConverter}}" FontSize="60" FontWeight="Bold" Width="200" TextAlignment="Center"/>
     <Button Grid.Row="2" Background="Blue" Foreground="White" FontSize="50" Command="{Binding ExitCountdownCommand}">Exit</Button>
   </Grid>
 </Window>

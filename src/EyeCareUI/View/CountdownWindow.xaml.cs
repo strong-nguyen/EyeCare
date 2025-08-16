@@ -25,6 +25,11 @@ namespace EyeCareUI.View
         {
             InitializeComponent();
             this.DataContext = Ioc.Default.GetRequiredService<CountdownViewModel>();
+
+            WindowStyle = WindowStyle.None;          // Removes title bar and borders
+            ResizeMode = ResizeMode.NoResize;        // Prevents resizing
+            WindowState = WindowState.Maximized;     // Maximizes to full screen
+            Topmost = true;
         }
     }
 }

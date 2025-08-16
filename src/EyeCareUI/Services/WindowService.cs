@@ -37,10 +37,6 @@ namespace EyeCareUI.Services
             if (isShow)
             {
                 wnd?.Show();
-                if (windowName == "CountdownWindow")
-                {
-                    wnd!.Topmost = true;
-                }
             }
             else
             {

@@ -19,6 +19,8 @@ namespace EyeCareUI
         protected override void OnStartup(StartupEventArgs e)
         {
             var serviceCollections = new ServiceCollection();
+
+            // Views
             serviceCollections.AddTransient<MainWindow>();
             serviceCollections.AddSingleton<CountdownWindow>();
             serviceCollections.AddSingleton<About>();
@@ -26,14 +28,19 @@ namespace EyeCareUI
 
             // Services
             serviceCollections.AddSingleton<WindowService>();
+            serviceCollections.AddSingleton<TimerService>();
+            serviceCollections.AddSingleton<SettingService>();
 
-            // View model
+            // View Models
             serviceCollections.AddSingleton<CountdownViewModel>();
             serviceCollections.AddSingleton<AboutViewModel>();
             serviceCollections.AddSingleton<SettingViewModel>();
 
             IServiceProvider provider = serviceCollections.BuildServiceProvider();
             Ioc.Default.ConfigureServices(provider);
+
+            var timerService = Ioc.Default.GetRequiredService<TimerService>();
+            timerService.OnStartApp();
 
             _pipeServer = new PipeServer("EyeCareUIPipe", (string message)=>
             {
@@ -53,7 +60,7 @@ namespace EyeCareUI
                     _pipeEvent.WaitOne();
                     if (_pipeMessages.Count != 0)
                     {
-                        if (_pipeMessages.TryDequeue(out string msg))
+                        if (_pipeMessages.TryDequeue(out string? msg))
                         {
                             HandlePipeMessage(msg);
                         }

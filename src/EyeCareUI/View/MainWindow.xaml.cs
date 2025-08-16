@@ -39,5 +39,10 @@ namespace EyeCareUI
             CountdownWindow countdownWnd = new CountdownWindow();
             countdownWnd.Show();
         }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }
