@@ -193,16 +193,12 @@
     <ClInclude Include="Common.h" />
     <ClInclude Include="EyeCare.h" />
     <ClInclude Include="EyeCareDlg.h" />
-    <ClInclude Include="EyeCareSetting.h" />
-    <ClInclude Include="EyeCareSettingDlg.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="MessageDefine.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
-    <ClInclude Include="SettingManager.h" />
     <ClInclude Include="SystemTrayNoti.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="TimerManager.h" />
     <ClInclude Include="UIProcessManager.h" />
   </ItemGroup>
   <ItemGroup>
@@ -211,17 +207,13 @@
     <ClCompile Include="Common.cpp" />
     <ClCompile Include="EyeCare.cpp" />
     <ClCompile Include="EyeCareDlg.cpp" />
-    <ClCompile Include="EyeCareSetting.cpp" />
-    <ClCompile Include="EyeCareSettingDlg.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="SettingManager.cpp" />
     <ClCompile Include="SystemTrayNoti.cpp" />
-    <ClCompile Include="TimerManager.cpp" />
     <ClCompile Include="UIProcessManager.cpp" />
   </ItemGroup>
   <ItemGroup>

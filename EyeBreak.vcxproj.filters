@@ -39,15 +39,6 @@
     <ClInclude Include="SystemTrayNoti.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="EyeCareSettingDlg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EyeCareSetting.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SettingManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="AppDataManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -55,9 +46,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Common.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TimerManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UIProcessManager.h">
@@ -77,15 +65,6 @@
     <ClCompile Include="SystemTrayNoti.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="EyeCareSettingDlg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EyeCareSetting.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SettingManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="AppDataManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -93,9 +72,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Common.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TimerManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UIProcessManager.cpp">

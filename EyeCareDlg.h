@@ -43,17 +43,11 @@ protected:
 
 	afx_msg void OnClose();
 
-	afx_msg void OnTimer(UINT_PTR nIDEvent);
-
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 
 	afx_msg LRESULT OnClickEyeBreakMenu(WPARAM wParam, LPARAM lParam);
 
-	afx_msg LRESULT OnApplySetting(WPARAM wParam, LPARAM lParam);
-
 	DECLARE_MESSAGE_MAP()
-public:
-	afx_msg void OnBnClickedContinueWorking();
 
 private:
 	void ShowSystemTrayMenu(const POINT& startPoint);
@@ -72,8 +66,6 @@ private:
 	CString m_countdownTime;
 
 	int m_relaxTime;
-
-	EyeCareSetting* m_appSetting;
 
 	AppState m_appState;
 };

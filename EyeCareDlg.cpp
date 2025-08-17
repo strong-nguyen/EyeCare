@@ -8,8 +8,6 @@
 #include "EyeCareDlg.h"
 #include "afxdialogex.h"
 #include "MessageDefine.h"
-#include "EyeCareSettingDlg.h"
-#include "SettingManager.h"
 #include "Common.h"
 
 #include <memory>
@@ -25,11 +23,8 @@
 
 CEyeCareDlg::CEyeCareDlg(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_EYEBREAK_DIALOG, pParent)
-	, m_appSetting(SettingManager::GetInstance()->GetSetting())
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDI_ICON_EYECARE);
-	m_relaxTime = m_appSetting->GetRelaxTimeMilliSecond() / 1000;
-	m_appState = AppState{ WorkingMode::Working, m_appSetting->GetBreakTimeMilliSecond() / 1000 };
 }
 
 void CEyeCareDlg::DoDataExchange(CDataExchange* pDX)
@@ -43,11 +38,8 @@ BEGIN_MESSAGE_MAP(CEyeCareDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
-	ON_BN_CLICKED(IDC_CONTINUE_WORKING, &CEyeCareDlg::OnBnClickedContinueWorking)
 	ON_MESSAGE(WM_EYEBREAK_SYSTEM_TRAY, &CEyeCareDlg::OnSystemTrayCallback)
 	ON_MESSAGE(WM_EYEBREAK_MENU, &CEyeCareDlg::OnClickEyeBreakMenu)
-	ON_MESSAGE(WM_EYECARE_SETTING_APPLY, &CEyeCareDlg::OnApplySetting)
-	ON_WM_TIMER()
 	ON_WM_CLOSE()
 	ON_WM_SIZE()
 END_MESSAGE_MAP()
@@ -170,32 +162,6 @@ void CEyeCareDlg::OnClose()
 	ShowWindow(SW_HIDE);
 }
 
-void CEyeCareDlg::OnTimer(UINT_PTR nIDEvent)
-{
-	if (nIDEvent == EYECARE_DISPLAY_TIMER)
-	{
-		m_appState = { WorkingMode::Relax, m_appSetting->GetRelaxTimeMilliSecond() / 1000 };
-		ShowCountdownDlg();
-	}
-	else if (nIDEvent == EYECARE_RELAX_COUNTDONW_TIMER)
-	{
-		--m_relaxTime;
-		m_countdownTime.Format(L"Relax time: %s", Common::FormatTime(m_relaxTime).c_str());
-		UpdateData(FALSE);
-
-		if (m_relaxTime == 0)
-		{
-			ShowWindow(SW_HIDE);
-			m_relaxTime = m_appSetting->GetRelaxTimeMilliSecond() / 1000;  // Reset
-			m_appState = { WorkingMode::Working, m_appSetting->GetBreakTimeMilliSecond() / 1000 };
-		}
-	}
-	else if (nIDEvent == EYECARE_APP_STATE_COUNTDONW_TIMER)
-	{
-		--m_appState.remainTimeSeconds;
-	}
-}
-
 void CEyeCareDlg::OnSize(UINT nType, int cx, int cy)
 {
 	CWnd* continueWorkingBtn = GetDlgItem(IDC_CONTINUE_WORKING);
@@ -224,7 +190,6 @@ LRESULT CEyeCareDlg::OnClickEyeBreakMenu(WPARAM wParam, LPARAM lParam)
 		QuitEyeCare();
 		break;
 	case MIT_SHOW_EYEBREAK:
-		m_appState = { WorkingMode::Relax, m_appSetting->GetRelaxTimeMilliSecond() / 1000 };
 		ShowCountdownDlg();
 		break;
 	case MIT_EYEBREAK_SETTING:
@@ -236,29 +201,6 @@ LRESULT CEyeCareDlg::OnClickEyeBreakMenu(WPARAM wParam, LPARAM lParam)
 	}
 
 	return TRUE;
-}
-
-LRESULT CEyeCareDlg::OnApplySetting(WPARAM wParam, LPARAM lParam)
-{
-	auto new_setting = std::unique_ptr<EyeCareSetting>(reinterpret_cast<EyeCareSetting*>(wParam));
-	if (!new_setting)
-	{
-		return FALSE;
-	}
-
-	m_relaxTime = new_setting->GetRelaxTimeMilliSecond() / 1000;
-
-	return LRESULT();
-}
-
-void CEyeCareDlg::OnBnClickedContinueWorking()
-{
-	ShowWindow(SW_HIDE);
-	m_relaxTime = m_appSetting->GetRelaxTimeMilliSecond() / 1000;  // Reset
-	m_appState = { WorkingMode::Working, m_appSetting->GetBreakTimeMilliSecond() / 1000 };
-
-	m_countdownTime = "";
-	UpdateData(FALSE);
 }
 
 void CEyeCareDlg::ShowSystemTrayMenu(const POINT& startPoint)

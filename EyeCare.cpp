@@ -7,7 +7,6 @@
 #include "EyeCare.h"
 #include "EyeCareDlg.h"
 #include "AppDataManager.h"
-#include "SettingManager.h"
 #include <Logger.h>
 #include "PipeServer.h"
 #include "UIProcessManager.h"
@@ -89,8 +88,6 @@ BOOL CEyeCareApp::InitInstance()
 	//}
 
 	AppDataManager::GetInstance();
-
-	SettingManager::GetInstance();
 
 	CommonLib::LoggerBuilder builder;
 	builder.SetRootPath(AppDataManager::GetInstance()->GetAppDataPath());

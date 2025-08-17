@@ -1,18 +1,14 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ generated include file.
-// Used by EyeBreak.rc
+// Used by EyeCare.rc
 //
 #define IDM_ABOUTBOX                    0x0010
 #define IDD_ABOUTBOX                    100
 #define IDS_ABOUTBOX                    101
 #define IDD_EYEBREAK_DIALOG             102
-#define IDD_EYECARE_SETTING_DLG         103
 #define IDR_MAINFRAME                   128
 #define IDI_ICON_EYECARE                131
 #define IDC_CONTINUE_WORKING            1000
-#define IDC_BREAK_TIME_EDIT             1001
-#define IDC_AUTOSTART_CHECKBOX          1002
-#define IDC_RELAX_TIME_EDIT             1003
 #define IDC_RELAX_COUNTDOWN_STATIC      1004
 
 // Next default values for new objects
