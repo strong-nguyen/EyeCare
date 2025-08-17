@@ -1,4 +1,6 @@
-﻿using EyeCareUI.View;
+﻿using CommunityToolkit.Mvvm.DependencyInjection;
+using EyeCareUI.Services;
+using EyeCareUI.View;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,6 +19,10 @@ namespace EyeCareUI
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private readonly WindowService _windowService = Ioc.Default.GetRequiredService<WindowService>();
+
+        private readonly TimerService _timerService = Ioc.Default.GetRequiredService<TimerService>();
         public MainWindow()
         {
             InitializeComponent();
@@ -24,20 +30,18 @@ namespace EyeCareUI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Setting setting = new Setting();
-            setting.Show();
+            _windowService.ShowWindow("SettingWindow", true);
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            About about = new About();
-            about.Show();
+            _windowService.ShowWindow("AboutWindow", true);
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            CountdownWindow countdownWnd = new CountdownWindow();
-            countdownWnd.Show();
+            _windowService.ShowWindow("CountdownWindow", true);
+            _timerService.OnShowCountdownDirectly();
         }
 
         private void Window_Closed(object sender, EventArgs e)

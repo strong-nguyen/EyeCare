@@ -80,5 +80,12 @@ namespace EyeCareUI.Services
             _countdownTimer.Stop();
             _takeBreakTimer.Start();
         }
+
+        // Sometime user want to take a break directly, not by timer
+        public void OnShowCountdownDirectly()
+        {
+            _takeBreakTimer.Stop();
+            _countdownTimer.Start();
+        }
     }
 }

@@ -99,6 +99,8 @@ namespace EyeCareUI
                     Application.Current.Dispatcher.BeginInvoke(() =>
                     {
                         windowService.ShowWindow("CountdownWindow", true);
+                        var timerService = Ioc.Default.GetRequiredService<TimerService>();
+                        timerService.OnShowCountdownDirectly();
                     });
                     break;
                 case "quit":

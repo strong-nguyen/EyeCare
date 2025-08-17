@@ -11,13 +11,20 @@
   <Window.Resources>
     <converter:SecondToMinuteConverter x:Key="SecondToMinuteConverter"/>
   </Window.Resources>
-    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-      <Grid.RowDefinitions>
-        <RowDefinition Height="Auto"/>
+
+  <Window.InputBindings>
+    <KeyBinding Key="Esc" Command="{Binding ExitCountdownCommand}" />
+  </Window.InputBindings>
+
+  <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
       <RowDefinition Height="20"/>
       <RowDefinition Height="Auto" />
-      </Grid.RowDefinitions>
-    <TextBlock Grid.Row="0" Text="{Binding CountdownSecond, Converter={StaticResource SecondToMinuteConverter}}" FontSize="60" FontWeight="Bold" Width="200" TextAlignment="Center"/>
-    <Button Grid.Row="2" Background="Blue" Foreground="White" FontSize="50" Command="{Binding ExitCountdownCommand}">Exit</Button>
+    </Grid.RowDefinitions>
+    <TextBlock Grid.Row="0" Text="Let's take a break!" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,40"/>
+    <TextBlock Grid.Row="1" Text="{Binding CountdownSecond, Converter={StaticResource SecondToMinuteConverter}}" FontSize="60" FontWeight="Bold" Width="200" TextAlignment="Center"/>
+    <Button Grid.Row="3" Background="Blue" Foreground="White" FontSize="50" Command="{Binding ExitCountdownCommand}">Exit</Button>
   </Grid>
 </Window>
