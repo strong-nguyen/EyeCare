@@ -6,13 +6,19 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Assets\TakeABreak.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\TakeABreak.ico" />
     <None Remove="Images\tpb.jpeg" />
     <None Remove="Images\usdt.jpeg" />
     <None Remove="View\tpb.jpeg" />
     <None Remove="View\usdt.jpeg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\TakeABreak.ico" />
   </ItemGroup>
 
   <ItemGroup>

@@ -26,6 +26,7 @@ namespace EyeCareUI.View
         public CountdownWindow()
         {
             InitializeComponent();
+
             this.DataContext = Ioc.Default.GetRequiredService<CountdownViewModel>();
 
             //SetBackgroundImage();

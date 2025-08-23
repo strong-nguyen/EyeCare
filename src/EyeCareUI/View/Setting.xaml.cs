@@ -24,6 +24,7 @@ namespace EyeCareUI.View
         public Setting()
         {
             InitializeComponent();
+
             this.DataContext = Ioc.Default.GetRequiredService<SettingViewModel>();
 
             this.Closing += Setting_Closing;
