@@ -2,3 +2,5 @@
 EyeCare/EyeCare/
 x64/
 *.vcxproj.user
+bin/
+obj/
