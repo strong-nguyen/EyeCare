@@ -13,7 +13,7 @@ UIProcessManager* UIProcessManager::GetInstance()
 bool UIProcessManager::StartUIProcess()
 {
 #ifdef _DEBUG
-	LPCWSTR process_name = L"src\\EyeCareUI\\bin\\Debug\\net8.0-windows\\EyeCareUI.exe";
+	LPCWSTR process_name = L"..\\EyeCareUI\\bin\\Debug\\net8.0-windows\\EyeCareUI.exe";
 #else
 	LPCWSTR process_name = L"EyeCareUI.exe";
 #endif
