@@ -223,8 +223,7 @@
     <None Include="res\EyeCare.rc2" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\EyeCare.ico" />
-    <Image Include="res\icon1.ico" />
+    <Image Include="res\TakeABreak.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -6,8 +6,8 @@
 #define IDD_ABOUTBOX                    100
 #define IDS_ABOUTBOX                    101
 #define IDD_EYEBREAK_DIALOG             102
-#define IDR_MAINFRAME                   128
-#define IDI_ICON_EYECARE                131
+#define IDI_ICON1                       133
+#define IDI_ICON_EYECARE                133
 #define IDC_CONTINUE_WORKING            1000
 #define IDC_RELAX_COUNTDOWN_STATIC      1004
 
@@ -15,7 +15,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        133
+#define _APS_NEXT_RESOURCE_VALUE        134
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1005
 #define _APS_NEXT_SYMED_VALUE           104
