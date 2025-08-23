@@ -5,21 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EyeCareUI.View"
         mc:Ignorable="d"
-        Title="About" Height="600" Width="800" MinHeight="600" MinWidth="800"
+        Title="About" Height="700" Width="800" MinHeight="700" MinWidth="800"
         WindowStartupLocation="CenterScreen">
-    <Grid Margin="20">
+  <Grid Margin="20">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+    
+    <Grid Grid.Row="0">
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto"/>
-        <RowDefinition Height="*"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
         <RowDefinition Height="Auto"/>
       </Grid.RowDefinitions>
-      <TextBlock FontStyle="Italic" FontSize="14" Grid.Row="0">
-        This application is developed by Van-Trong Nguyen.<LineBreak/>
-        It is totally free, no-ads and if you find it useful, you could buy me a coffee via VND or USDT addresses below:
+
+      <TextBlock Grid.Row="0" Text="Take A Break" FontSize="14" FontWeight="Bold"/>
+      <StackPanel Grid.Row="1" Orientation="Horizontal">
+        <TextBlock Text="Version: " FontSize="14"/>
+        <TextBlock Text="{Binding Version}"  FontSize="14"/>
+      </StackPanel>
+      <TextBlock Grid.Row="2" Text="Developed by Van-Trong Nguyen" FontSize="14"/>
+      <TextBlock FontStyle="Italic" FontSize="14" Grid.Row="3">
+          It is totally free, no-ads and if you find it useful, you could buy me a coffee via VND or USDT addresses below:
       </TextBlock>
-      
+    </Grid>
+
+
     <Button Grid.Row="2" HorizontalAlignment="Right" Width="120" Height="40" Background="Blue" Foreground="White" FontSize="14" Command="{Binding ThankYouCommand}">Thank you</Button>
-      
+
     <Grid Grid.Row="1" Margin="0,20,0,0">
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto"/>

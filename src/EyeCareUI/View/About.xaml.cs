@@ -2,6 +2,7 @@
 using EyeCareUI.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,14 @@ namespace EyeCareUI.View
             var vm = Ioc.Default.GetRequiredService<AboutViewModel>();
             this.DataContext = vm;
             vm.CloseAction = new Action(this.Hide);
+
+            this.Closing += About_Closing;
+        }
+
+        private void About_Closing(object? sender, CancelEventArgs e)
+        {
+            e.Cancel = true;
+            this.Hide();
         }
     }
 }

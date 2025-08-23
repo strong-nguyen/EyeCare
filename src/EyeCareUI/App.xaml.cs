@@ -68,8 +68,8 @@ namespace EyeCareUI
                 }
             });
 
-            //var mainWnd = Ioc.Default.GetRequiredService<MainWindow>();
-            //mainWnd.Show();
+            var mainWnd = Ioc.Default.GetRequiredService<MainWindow>();
+            mainWnd.Show();
         }
 
         protected override void OnExit(ExitEventArgs e)
