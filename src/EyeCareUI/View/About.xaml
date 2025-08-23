@@ -34,7 +34,7 @@
     </Grid>
 
 
-    <Button Grid.Row="2" HorizontalAlignment="Right" Width="120" Height="40" Background="Blue" Foreground="White" FontSize="14" Command="{Binding ThankYouCommand}">Thank you</Button>
+    <Button Grid.Row="2" HorizontalAlignment="Right" Width="120" Height="40" FontSize="14" Style="{StaticResource MyButton}" Command="{Binding ThankYouCommand}">Thank you</Button>
 
     <Grid Grid.Row="1" Margin="0,20,0,0">
       <Grid.RowDefinitions>
