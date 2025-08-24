@@ -30,18 +30,14 @@ CEyeCareDlg::CEyeCareDlg(CWnd* pParent /*=nullptr*/)
 void CEyeCareDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
-
-	DDX_Text(pDX, IDC_RELAX_COUNTDOWN_STATIC, m_countdownTime);
 }
 
 BEGIN_MESSAGE_MAP(CEyeCareDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
-	ON_MESSAGE(WM_EYEBREAK_SYSTEM_TRAY, &CEyeCareDlg::OnSystemTrayCallback)
-	ON_MESSAGE(WM_EYEBREAK_MENU, &CEyeCareDlg::OnClickEyeBreakMenu)
-	ON_WM_CLOSE()
-	ON_WM_SIZE()
+	ON_MESSAGE(WM_EYECARE_SYSTEM_TRAY, &CEyeCareDlg::OnSystemTrayCallback)
+	ON_MESSAGE(WM_EYECARE_MENU, &CEyeCareDlg::OnClickEyeCareMenu)
 END_MESSAGE_MAP()
 
 
@@ -56,8 +52,10 @@ BOOL CEyeCareDlg::OnInitDialog()
 	SetIcon(m_hIcon, TRUE);			// Set big icon
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
-	m_trayNoti.Setup(GetSafeHwnd(), WM_EYEBREAK_SYSTEM_TRAY);
+	m_trayNoti.Setup(GetSafeHwnd(), WM_EYECARE_SYSTEM_TRAY);
 	m_trayNoti.SendStartNoti();
+
+	ShowWindow(SW_HIDE);
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -120,7 +118,6 @@ LRESULT CEyeCareDlg::OnSystemTrayCallback(WPARAM wParam, LPARAM lParam)
 		case WM_MOUSEMOVE:
 		{
 			// Hover on system tray
-			//m_trayNoti.SendStatusNoti(m_appState.GetAppStatus());
 			break;
 		}
 	}
@@ -129,7 +126,7 @@ LRESULT CEyeCareDlg::OnSystemTrayCallback(WPARAM wParam, LPARAM lParam)
 
 void CEyeCareDlg::QuitEyeCare()
 {
-	m_trayNoti.SendCloseNoti();
+	BOOL ret = m_trayNoti.SendCloseNoti();
 	DestroyWindow();
 }
 
@@ -157,45 +154,20 @@ void CEyeCareDlg::ShowAboutDlg()
 	}
 }
 
-void CEyeCareDlg::OnClose()
-{
-	ShowWindow(SW_HIDE);
-}
-
-void CEyeCareDlg::OnSize(UINT nType, int cx, int cy)
-{
-	CWnd* continueWorkingBtn = GetDlgItem(IDC_CONTINUE_WORKING);
-	CWnd* countdownText = GetDlgItem(IDC_RELAX_COUNTDOWN_STATIC);
-	if (!continueWorkingBtn || !countdownText)
-	{
-		return;
-	}
-
-	// Adapt position of continue working button when dialog size has changed
-	CRect rect;
-	continueWorkingBtn->GetWindowRect(&rect);
-	continueWorkingBtn->SetWindowPos(nullptr, cx / 2, cy / 2, rect.Width(), rect.Height(), SWP_SHOWWINDOW);
-
-	countdownText->GetWindowRect(&rect);
-	countdownText->SetWindowPos(nullptr, cx / 2, cy / 2 + 50, rect.Width(), rect.Height(), SWP_SHOWWINDOW);
-
-	return;
-}
-
-LRESULT CEyeCareDlg::OnClickEyeBreakMenu(WPARAM wParam, LPARAM lParam)
+LRESULT CEyeCareDlg::OnClickEyeCareMenu(WPARAM wParam, LPARAM lParam)
 {
 	switch (wParam)
 	{
-	case MIT_EYEBREAK_QUIT:
+	case MIT_EYECARE_QUIT:
 		QuitEyeCare();
 		break;
-	case MIT_SHOW_EYEBREAK:
+	case MIT_TAKE_A_BREAK:
 		ShowCountdownDlg();
 		break;
-	case MIT_EYEBREAK_SETTING:
+	case MIT_SHOW_SETTING:
 		ShowSettingDlg();
 		break;
-	case MIT_EYEBREAK_ABOUT:
+	case MIT_SHOW_ABOUT:
 		ShowAboutDlg();
 		break;
 	}
@@ -209,12 +181,12 @@ void CEyeCareDlg::ShowSystemTrayMenu(const POINT& startPoint)
 
 	HMENU menu = ::CreatePopupMenu();
 
-	AppendMenu(menu, MF_STRING, MIT_SHOW_EYEBREAK, L"Take A Break");
-	AppendMenu(menu, MF_STRING, MIT_EYEBREAK_SETTING, L"Setting");
-	AppendMenu(menu, MF_STRING, MIT_EYEBREAK_ABOUT, L"About");
-	AppendMenu(menu, MF_STRING, MIT_EYEBREAK_QUIT, L"Quit");
+	AppendMenu(menu, MF_STRING, MIT_TAKE_A_BREAK, L"Take A Break");
+	AppendMenu(menu, MF_STRING, MIT_SHOW_SETTING, L"Setting");
+	AppendMenu(menu, MF_STRING, MIT_SHOW_ABOUT, L"About");
+	AppendMenu(menu, MF_STRING, MIT_EYECARE_QUIT, L"Quit");
 
 	int ret = TrackPopupMenuEx(menu, TPM_CENTERALIGN | TPM_LEFTBUTTON | TPM_RETURNCMD, startPoint.x, startPoint.y, GetSafeHwnd(), nullptr);
 
-	PostMessageW(WM_EYEBREAK_MENU, ret, 0);
+	PostMessageW(WM_EYECARE_MENU, ret, 0);
 }

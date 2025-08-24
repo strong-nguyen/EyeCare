@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "AppDataManager.h"
 #include <Logger.h>
+#include "Common.h"
 
 namespace fs = std::filesystem;
 
@@ -29,13 +30,14 @@ void AppDataManager::InitializeAppData()
 		std::wstring localapp_data_path = path;
 		CoTaskMemFree(path);
 		m_appdata_path = std::filesystem::path(localapp_data_path) / L"EyeCare";
-		if (!std::filesystem::exists(m_appdata_path) && !std::filesystem::create_directory(m_appdata_path))
+		std::error_code ec;
+		if (!std::filesystem::exists(m_appdata_path) && !std::filesystem::create_directory(m_appdata_path, ec))
 		{
-			CommonLib::log(L"FS").Error(L"Failed to create appdata folder: %s", m_appdata_path.wstring().c_str());
+			Common::OutputDebug(L"Failed to create appdata folder: %s, ec: %d", m_appdata_path.wstring().c_str(), ec.value());
 		}
 	}
 	else
 	{
-		CommonLib::log(L"FS").Error(L"Failed to call SHGetKnownFolderPath, ret: %08X", ret);
+		Common::OutputDebug(L"Failed to call SHGetKnownFolderPath, ret: %08X", ret);
 	}
 }

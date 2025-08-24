@@ -33,12 +33,4 @@ namespace Common
 			return std::format(L"{}h : {}m : {}s", hours, minutes, seconds);
 		}
 	}
-
-
-
-
-
-
-
-
 }

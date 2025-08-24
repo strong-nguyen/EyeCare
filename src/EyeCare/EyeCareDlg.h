@@ -1,12 +1,11 @@
 
-// EyeBreakDlg.h : header file
+// EyeCareDlg.h : header file
 //
 
 #pragma once
 
 
 #include "SystemTrayNoti.h"
-#include "AppState.h"
 
 
 class EyeCareSetting;
@@ -41,11 +40,7 @@ protected:
 
 	afx_msg LRESULT OnSystemTrayCallback(WPARAM wParam, LPARAM lParam);
 
-	afx_msg void OnClose();
-
-	afx_msg void OnSize(UINT nType, int cx, int cy);
-
-	afx_msg LRESULT OnClickEyeBreakMenu(WPARAM wParam, LPARAM lParam);
+	afx_msg LRESULT OnClickEyeCareMenu(WPARAM wParam, LPARAM lParam);
 
 	DECLARE_MESSAGE_MAP()
 
@@ -62,10 +57,4 @@ private:
 
 	// Manage system tray notification
 	SystemTrayNoti m_trayNoti;
-
-	CString m_countdownTime;
-
-	int m_relaxTime;
-
-	AppState m_appState;
 };
