@@ -8,7 +8,8 @@
 #include "EyeCareDlg.h"
 #include "AppDataManager.h"
 #include <Logger.h>
-#include "PipeServer.h"
+#include <PipeServer.h>
+#include <PipeClient.h>
 #include "UIProcessManager.h"
 
 #ifdef _DEBUG
@@ -67,14 +68,15 @@ BOOL CEyeCareApp::InitInstance()
 	// such as the name of your company or organization
 	SetRegistryKey(_T("Local AppWizard-Generated Applications"));
 
+	// Initialize app data
 	AppDataManager::GetInstance();
 
+	// Initialize logger
 	CommonLib::LoggerBuilder builder;
 	builder.SetRootPath(AppDataManager::GetInstance()->GetAppDataPath());
 	CommonLib::log = builder.BuildLogger();
 
-	PipeServer pipeServer(L"EyeCare", &Log);
-	pipeServer.Start();
+	PipeClient::SetLoggerInterface(&Log);
 
 	UIProcessManager::GetInstance()->StartUIProcess();
 

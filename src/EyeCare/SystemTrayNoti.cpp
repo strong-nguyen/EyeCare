@@ -32,7 +32,7 @@ BOOL SystemTrayNoti::SendStartNoti()
 	trayNotifyData.hIcon = icon;
 	trayNotifyData.uVersion = NOTIFYICON_VERSION_4;
 
-	wcscpy_s(trayNotifyData.szTip, L"EyeCare is running");
+	wcscpy_s(trayNotifyData.szTip, L"Take A Break is running");
 
 	BOOL ret = ::Shell_NotifyIconW(NIM_ADD, &trayNotifyData);
 	::Shell_NotifyIconW(NIM_SETVERSION, &trayNotifyData);

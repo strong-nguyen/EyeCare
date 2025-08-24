@@ -19,7 +19,7 @@ namespace CommonLib
 		{
 			CStringW msg;
 			msg.Format(formatMsg, args...);
-			WriteLog(LogLevel::Info, m_logTag, msg.GetString());
+			WriteLog(LogLevel::Info, msg.GetString());
 		}
 
 		template <typename... Args>
@@ -27,7 +27,7 @@ namespace CommonLib
 		{
 			CStringW msg;
 			msg.Format(formatMsg, args...);
-			WriteLog(LogLevel::Warn, m_logTag, msg.GetString());
+			WriteLog(LogLevel::Warn, msg.GetString());
 		}
 
 		template <typename... Args>
@@ -35,7 +35,7 @@ namespace CommonLib
 		{
 			CStringW msg;
 			msg.Format(formatMsg, args...);
-			WriteLog(LogLevel::Error, m_logTag, msg.GetString());
+			WriteLog(LogLevel::Error, msg.GetString());
 		}
 
 		Logger& operator()(const std::wstring& tag);
@@ -50,11 +50,9 @@ namespace CommonLib
 			Info
 		};
 
-		void WriteLog(LogLevel logLevel, const std::wstring& tag, const std::wstring& msg);
+		void WriteLog(LogLevel logLevel, const std::wstring& msg);
 
 		std::filesystem::path m_rootPath;
-
-		std::wstring m_logTag;  // Each thread will have different tag
 
 		static std::map<LogLevel, std::wstring> s_logLevelMap;
 

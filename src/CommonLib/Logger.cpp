@@ -9,6 +9,8 @@
 
 namespace CommonLib
 {
+	thread_local std::wstring LogTag = L"";
+
 	std::map<Logger::LogLevel, std::wstring> Logger::s_logLevelMap
 	{
 		{Logger::LogLevel::Error, L"Error"},
@@ -18,7 +20,7 @@ namespace CommonLib
 
 	Logger& Logger::operator()(const std::wstring& tag)
 	{
-		m_logTag = tag;
+		LogTag = tag;
 		return *this;
 	}
 
@@ -27,7 +29,7 @@ namespace CommonLib
 		m_rootPath = rootPath;
 	}
 
-	void Logger::WriteLog(LogLevel logLevel, const std::wstring& tag, const std::wstring& msg)
+	void Logger::WriteLog(LogLevel logLevel, const std::wstring& msg)
 	{
 		std::time_t currentTime = std::time(nullptr);
 		tm* localTime = std::localtime(&currentTime);
@@ -36,7 +38,7 @@ namespace CommonLib
 
 		std::lock_guard lock(s_logMutex);
 		std::wofstream logFile(logFilePath, std::ios::app);
-		std::wstring log = std::format(L"{:02}:{:02}:{:02}  [{}][{}] {}", localTime->tm_hour, localTime->tm_min, localTime->tm_sec, tag, s_logLevelMap[logLevel], msg);
+		std::wstring log = std::format(L"{:02}:{:02}:{:02}  [{}][{}] {}", localTime->tm_hour, localTime->tm_min, localTime->tm_sec, LogTag, s_logLevelMap[logLevel], msg);
 		logFile << log << std::endl;
 		logFile.close();
 	}

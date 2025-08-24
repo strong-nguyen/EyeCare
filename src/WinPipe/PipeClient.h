@@ -1,7 +1,9 @@
 #pragma once
 
+#include "IPipe.h"
+
 // PipeClient -> used in process that connects to the Pipe
-class __declspec(dllexport) PipeClient
+class __declspec(dllexport) PipeClient : public IPipe
 {
 public:
 	bool Connect(const std::wstring& pipeServerName);

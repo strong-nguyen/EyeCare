@@ -10,9 +10,8 @@
 #include "MessageDefine.h"
 #include "Common.h"
 
-#include <memory>
-#include <thread>
 #include <PipeClient.h>
+#include <Logger.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

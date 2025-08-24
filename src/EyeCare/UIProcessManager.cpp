@@ -3,6 +3,7 @@
 #include <PipeClient.h>
 #include <format>
 #include <filesystem>
+#include <Logger.h>
 
 
 UIProcessManager* UIProcessManager::GetInstance()
@@ -27,8 +28,7 @@ bool UIProcessManager::InitJobObject()
 	m_job = ::CreateJobObject(nullptr, L"EyeCareJob");
 	if (m_job == nullptr)
 	{
-		std::wstring msg = std::format(L"CreateJobObject failed, ec: {}", ::GetLastError());
-		OutputDebugStringW(msg.c_str());
+		CommonLib::log(L"UI").Error(L"CreateJobObject failed, ec: %d", ::GetLastError());
 		return false;
 	}
 
@@ -36,7 +36,7 @@ bool UIProcessManager::InitJobObject()
 	job_info.BasicLimitInformation.LimitFlags = JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE;
 	if (!::SetInformationJobObject(m_job, JobObjectExtendedLimitInformation, &job_info, sizeof(JOBOBJECT_EXTENDED_LIMIT_INFORMATION)))
 	{
-		std::wstring msg = std::format(L"SetInformationJobObject failed, ec: {}", ::GetLastError());
+		CommonLib::log(L"UI").Error(L"SetInformationJobObject failed, ec: %d", ::GetLastError());
 		return false;
 	}
 
@@ -63,7 +63,7 @@ bool UIProcessManager::StartUIProcess()
 	}
 	else
 	{
-		// TODO: Log
+		CommonLib::log(L"UI").Error(L"GetModuleFileName failed");
 	}
 #else
 	LPCWSTR process_name = L"EyeCareUI.exe";
@@ -87,16 +87,13 @@ bool UIProcessManager::StartUIProcess()
 
 	if (!ret)
 	{
-		// TODO: Log
-		std::wstring msg = std::format(L"CreateProcess failed, err: {}", ::GetLastError());
-		OutputDebugStringW(msg.c_str());
+		CommonLib::log(L"UI").Error(L"CreateProcess failed, ec: %d", ::GetLastError());
 		return false;
 	}
 
 	if (!::AssignProcessToJobObject(m_job, m_pi.hProcess))
 	{
-		std::wstring msg = std::format(L"AssignProcessToJobObject failed, err: {}", ::GetLastError());
-		OutputDebugStringW(msg.c_str());
+		CommonLib::log(L"UI").Error(L"AssignProcessToJobObject failed, ec: %d", ::GetLastError());
 		return false;
 	}
 

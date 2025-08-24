@@ -16,7 +16,7 @@ bool PipeClient::Connect(const std::wstring& pipeServerName)
 		NULL);                  // no template file
 
 	if (m_pipe == INVALID_HANDLE_VALUE) {
-		OutputDebugStringA(std::format("Failed to connect to pipe. Error: {}", GetLastError()).c_str());
+		Log(std::format(L"Failed to connect to pipe. Error: {}", GetLastError()).c_str());
 		return false;
 	}
 
@@ -36,7 +36,7 @@ bool PipeClient::Notify(const std::string& message)
 	FlushFileBuffers(m_pipe);
 
 	if (!success) {
-		OutputDebugStringA(std::format("Failed to write to pipe.Error: {}", GetLastError()).c_str());
+		Log(std::format(L"Failed to write to pipe.Error: {}", GetLastError()).c_str());
 		return false;
 	}
 	else {

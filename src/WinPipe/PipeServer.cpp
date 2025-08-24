@@ -3,10 +3,9 @@
 #include <thread>
 
 
-PipeServer::PipeServer(const std::wstring& pipeName, LoggerCallback logger /*= nullptr*/)
+PipeServer::PipeServer(const std::wstring& pipeName)
 	: 
-	m_pipeName(pipeName),
-	m_logger(logger)
+	m_pipeName(pipeName)
 {
 
 }
@@ -52,12 +51,4 @@ void PipeServer::Start()
 			}
 		});
 	task.detach();
-}
-
-void PipeServer::Log(const std::wstring& msg)
-{
-	if (m_logger)
-	{
-		m_logger(L"Pipe", msg);
-	}
 }
