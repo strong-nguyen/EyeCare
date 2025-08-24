@@ -25,15 +25,10 @@ namespace EyeCareUI.View
         {
             InitializeComponent();
 
-            this.DataContext = Ioc.Default.GetRequiredService<SettingViewModel>();
-
-            //this.Closing += Setting_Closing;
+            var vm = Ioc.Default.GetRequiredService<SettingViewModel>();
+            this.DataContext = vm;
+            vm.GetOwner = () => this;
         }
 
-        private void Setting_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
-        {
-            e.Cancel = true;
-            this.Hide();
-        }
     }
 }

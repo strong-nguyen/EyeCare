@@ -16,8 +16,12 @@ using System.Xml.Linq;
 
 namespace EyeCareUI.ViewModel
 {
+    delegate Window? GetOwnerWindow();
+
     internal partial class SettingViewModel : ObservableObject
     {
+        public GetOwnerWindow? GetOwner { get; set; }
+
         private WindowService _windowService = Ioc.Default.GetRequiredService<WindowService>();
 
         private readonly SettingService _settingService = Ioc.Default.GetRequiredService<SettingService>();
@@ -128,14 +132,14 @@ namespace EyeCareUI.ViewModel
             bool ret = double.TryParse(BreakTime, out double breakTime);
             if (!ret)
             {
-                MessageBox.Show("Take A Break After Time is invalid format");
+                MessageBox.Show(GetOwner?.Invoke(), "Take A Break After Time is invalid format", "Take A Break", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             ret = double.TryParse(RelaxTime, out double relaxTime);
             if (!ret)
             {
-                MessageBox.Show("Break In Time is invalid format");
+                MessageBox.Show(GetOwner?.Invoke(), "Break In Time is invalid format", "Take A Break", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 

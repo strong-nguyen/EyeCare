@@ -8,7 +8,7 @@ namespace EyeCareUI.Model
 {
     internal class SettingModel
     {
-        public int BreakTimeMinutes { get; set; } = 60;  // Take a break after 60m
+        public int BreakTimeMinutes { get; set; } = 25;  // Take a break after 25m
 
         public int CountdownTimeMinutes { get; set; } = 5;  // Relax 5m
 

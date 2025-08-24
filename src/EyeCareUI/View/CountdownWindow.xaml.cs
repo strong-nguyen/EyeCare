@@ -29,8 +29,6 @@ namespace EyeCareUI.View
 
             this.DataContext = Ioc.Default.GetRequiredService<CountdownViewModel>();
 
-            //SetBackgroundImage();
-
             WindowStyle = WindowStyle.None;          // Removes title bar and borders
             ResizeMode = ResizeMode.NoResize;        // Prevents resizing
             WindowState = WindowState.Maximized;     // Maximizes to full screen
@@ -53,20 +51,17 @@ namespace EyeCareUI.View
 
             if (wallpaperPath == null)
             {
-                // TODO: Log
                 return;
             }
 
             string wallPaper = wallpaperPath.ToString();
             if (String.IsNullOrEmpty(wallPaper))
             {
-                // TODO: Log
                 return;
             }
 
             if (!File.Exists(wallPaper))
             {
-                // TODO: Log
                 return;
             }
 
