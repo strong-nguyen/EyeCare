@@ -21,8 +21,8 @@
       </Grid.ColumnDefinitions>
       <TextBlock Grid.Row="0" Grid.Column="0" Text="Take A Break After" FontWeight="Bold" FontSize="18" Margin="10" VerticalAlignment="Center"/>
       <TextBlock Grid.Row="1" Grid.Column="0" Text="Break In" FontWeight="Bold" FontSize="18" Margin="10" VerticalAlignment="Center"/>
-      <TextBox Grid.Row="0" Grid.Column="1" Margin="10" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" Height="60" BorderThickness="0,0,0,1" BorderBrush="Black" Background="Transparent" FontWeight="Bold" FontSize="18" Foreground="Green" TextWrapping="NoWrap" AcceptsReturn="False" Text="{Binding BreakTime, Mode=TwoWay}"/>
-      <TextBox Grid.Row="1" Grid.Column="1" Margin="10" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" Height="60" BorderThickness="0,0,0,1" BorderBrush="Black" Background="Transparent" FontWeight="Bold" FontSize="18" Foreground="Orange" TextWrapping="NoWrap" AcceptsReturn="False" Text="{Binding RelaxTime, Mode=TwoWay}"/>
+      <TextBox Grid.Row="0" Grid.Column="1" Margin="10" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" Height="60" BorderThickness="0,0,0,1" BorderBrush="Black" Background="Transparent" FontWeight="Bold" FontSize="18" Foreground="Green" TextWrapping="NoWrap" AcceptsReturn="False" Text="{Binding BreakTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+      <TextBox Grid.Row="1" Grid.Column="1" Margin="10" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" Height="60" BorderThickness="0,0,0,1" BorderBrush="Black" Background="Transparent" FontWeight="Bold" FontSize="18" Foreground="Orange" TextWrapping="NoWrap" AcceptsReturn="False" Text="{Binding RelaxTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
       <TextBlock Grid.Row="0" Grid.Column="2" Text="minutes" FontSize="18" Margin="10" VerticalAlignment="Center"/>
       <TextBlock Grid.Row="1" Grid.Column="2" Text="minutes" FontSize="18" Margin="10" VerticalAlignment="Center"/>
       

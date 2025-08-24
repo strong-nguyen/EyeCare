@@ -13,6 +13,11 @@ namespace EyeCareUI.Services
     {
         private SettingModel _settings;
 
+        public SettingModel Settings
+        {
+            get { return _settings; }
+        }
+
         private IniFile _iniFile;
 
         public SettingService()

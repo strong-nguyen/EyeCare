@@ -27,7 +27,7 @@ namespace EyeCareUI.View
 
             this.DataContext = Ioc.Default.GetRequiredService<SettingViewModel>();
 
-            this.Closing += Setting_Closing;
+            //this.Closing += Setting_Closing;
         }
 
         private void Setting_Closing(object? sender, System.ComponentModel.CancelEventArgs e)

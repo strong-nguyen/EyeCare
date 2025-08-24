@@ -23,7 +23,11 @@ namespace EyeCareUI.Services
                     wnd = Ioc.Default.GetRequiredService<About>();
                     break;
                 case "SettingWindow":
-                    wnd = Ioc.Default.GetRequiredService<Setting>();
+                    wnd = Application.Current.Windows.OfType<Setting>().FirstOrDefault();
+                    if (wnd == null)
+                    {
+                        wnd = Ioc.Default.GetRequiredService<Setting>();
+                    }
                     break;
                 default:
                     break;
@@ -40,7 +44,14 @@ namespace EyeCareUI.Services
             }
             else
             {
-                wnd?.Hide();
+                if (windowName == "SettingWindow")
+                {
+                    wnd?.Close();
+                }
+                else
+                {
+                    wnd?.Hide();
+                }
             }
         }
     }

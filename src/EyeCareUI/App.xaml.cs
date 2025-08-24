@@ -24,7 +24,7 @@ namespace EyeCareUI
             serviceCollections.AddTransient<MainWindow>();
             serviceCollections.AddSingleton<CountdownWindow>();
             serviceCollections.AddSingleton<About>();
-            serviceCollections.AddSingleton<Setting>();
+            serviceCollections.AddTransient<Setting>();
 
             // Services
             serviceCollections.AddSingleton<WindowService>();
@@ -34,7 +34,7 @@ namespace EyeCareUI
             // View Models
             serviceCollections.AddSingleton<CountdownViewModel>();
             serviceCollections.AddSingleton<AboutViewModel>();
-            serviceCollections.AddSingleton<SettingViewModel>();
+            serviceCollections.AddTransient<SettingViewModel>();
 
             IServiceProvider provider = serviceCollections.BuildServiceProvider();
             Ioc.Default.ConfigureServices(provider);

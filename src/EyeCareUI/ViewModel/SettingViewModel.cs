@@ -11,6 +11,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Microsoft.Win32;
+using System.Xml.Linq;
 
 namespace EyeCareUI.ViewModel
 {
@@ -20,29 +22,113 @@ namespace EyeCareUI.ViewModel
 
         private readonly SettingService _settingService = Ioc.Default.GetRequiredService<SettingService>();
 
-        [ObservableProperty]
         string _breakTime = String.Empty;
 
-        [ObservableProperty]
         string _relaxTime = String.Empty;
 
-        [ObservableProperty]
         bool _isAutoStart = true;
+
+        public string BreakTime
+        {
+            get
+            {
+                return _breakTime;
+            }
+
+            set
+            {
+                if (_breakTime != value)
+                {
+                    _breakTime = value;
+                    OnPropertyChanged();
+
+                    CheckUserSettingHasChanged();
+                }
+            }
+        }
+
+        public string RelaxTime
+        {
+            get
+            {
+                return _relaxTime;
+            }
+
+            set
+            {
+                if (_relaxTime != value)
+                {
+                    _relaxTime = value;
+                    OnPropertyChanged();
+
+                    CheckUserSettingHasChanged();
+                }
+            }
+        }
+
+        public bool IsAutoStart
+        {
+            get
+            {
+                return _isAutoStart;
+            }
+
+            set
+            {
+                if (_isAutoStart != value)
+                {
+                    _isAutoStart = value;
+                    OnPropertyChanged();
+
+                    CheckUserSettingHasChanged();
+                }
+            }
+        }
 
         public SettingViewModel()
         {
             BreakTime = _settingService.GetBreakTimeMinutes().ToString();
             RelaxTime = _settingService.GetCountdownTimeMinutes().ToString();
             IsAutoStart = _settingService.IsAutoStart();
+
+            CanApplySetting = false;
         }
 
-        [RelayCommand]
+        [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(OKCommand))]
+        bool _canApplySetting;
+
+        bool CheckUserSettingHasChanged()
+        {
+            if (_settingService.GetBreakTimeMinutes().ToString() != BreakTime)
+            {
+                CanApplySetting = true;
+                return true;
+            }
+
+            if (_settingService.GetCountdownTimeMinutes().ToString() != RelaxTime)
+            {
+                CanApplySetting = true;
+                return true;
+            }
+
+            if (_settingService.IsAutoStart() != IsAutoStart)
+            {
+                CanApplySetting = true;
+                return true;
+            }
+
+            CanApplySetting = false;
+            return false;
+        }
+
+        [RelayCommand(CanExecute = nameof(CanApplySetting))]
         void OK()
         {
             bool ret = double.TryParse(BreakTime, out double breakTime);
             if (!ret)
             {
-                MessageBox.Show("Break After Time is invalid format");
+                MessageBox.Show("Take A Break After Time is invalid format");
                 return;
             }
 
@@ -59,7 +145,34 @@ namespace EyeCareUI.ViewModel
             var timerService = Ioc.Default.GetRequiredService<TimerService>();
             timerService.OnUpdateSetting();
 
+            SetAutoStartWithWindows(setting.IsAutoStart);
+
             _windowService.ShowWindow("SettingWindow", false);
+        }
+
+        bool SetAutoStartWithWindows(bool isAutoStart)
+        {
+            string subKey = @"Software\Microsoft\Windows\CurrentVersion\Run";
+            // Create or open the subkey
+            using (RegistryKey key = Registry.CurrentUser.CreateSubKey(subKey))
+            {
+                if (key != null)
+                {
+                    if (isAutoStart)
+                    {
+                        // Set a value inside the key
+                        key.SetValue("EyeCare", @"C:\Users\trong\Documents\Projects\EyeCare\src\EyeCare\x64\Debug\EyeCare.exe", RegistryValueKind.String);
+                        return true;
+                    }
+                    else
+                    {
+                        key.DeleteValue("EyeCare", throwOnMissingValue: false);
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
 
         [RelayCommand]
