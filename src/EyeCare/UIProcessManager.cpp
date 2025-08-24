@@ -2,6 +2,7 @@
 #include "UIProcessManager.h"
 #include <PipeClient.h>
 #include <format>
+#include <filesystem>
 
 
 UIProcessManager* UIProcessManager::GetInstance()
@@ -45,7 +46,25 @@ bool UIProcessManager::InitJobObject()
 bool UIProcessManager::StartUIProcess()
 {
 #ifdef _DEBUG
+	TCHAR exe_path[MAX_PATH] = {};
+	DWORD length = GetModuleFileName(NULL, exe_path, MAX_PATH);
 	LPCWSTR process_name = L"..\\EyeCareUI\\bin\\Debug\\net8.0-windows\\EyeCareUI.exe";
+	std::filesystem::path ui_exe_path;
+	if (length > 0)
+	{
+		ui_exe_path = exe_path;
+		for (int i = 0; i < 4; ++i)
+		{
+			ui_exe_path /= "..";
+		};
+		ui_exe_path = ui_exe_path / "EyeCareUI\\bin\\Debug\\net8.0-windows\\EyeCareUI.exe";
+
+		process_name = ui_exe_path.c_str();
+	}
+	else
+	{
+		// TODO: Log
+	}
 #else
 	LPCWSTR process_name = L"EyeCareUI.exe";
 #endif
