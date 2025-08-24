@@ -10,6 +10,38 @@ UIProcessManager* UIProcessManager::GetInstance()
 	return &instance;
 }
 
+UIProcessManager::UIProcessManager()
+{
+	InitJobObject();
+}
+
+UIProcessManager::~UIProcessManager()
+{
+	::CloseHandle(m_job);
+	m_job = nullptr;
+}
+
+bool UIProcessManager::InitJobObject()
+{
+	m_job = ::CreateJobObject(nullptr, L"EyeCareJob");
+	if (m_job == nullptr)
+	{
+		std::wstring msg = std::format(L"CreateJobObject failed, ec: {}", ::GetLastError());
+		OutputDebugStringW(msg.c_str());
+		return false;
+	}
+
+	JOBOBJECT_EXTENDED_LIMIT_INFORMATION job_info = {};
+	job_info.BasicLimitInformation.LimitFlags = JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE;
+	if (!::SetInformationJobObject(m_job, JobObjectExtendedLimitInformation, &job_info, sizeof(JOBOBJECT_EXTENDED_LIMIT_INFORMATION)))
+	{
+		std::wstring msg = std::format(L"SetInformationJobObject failed, ec: {}", ::GetLastError());
+		return false;
+	}
+
+	return true;
+}
+
 bool UIProcessManager::StartUIProcess()
 {
 #ifdef _DEBUG
@@ -38,6 +70,13 @@ bool UIProcessManager::StartUIProcess()
 	{
 		// TODO: Log
 		std::wstring msg = std::format(L"CreateProcess failed, err: {}", ::GetLastError());
+		OutputDebugStringW(msg.c_str());
+		return false;
+	}
+
+	if (!::AssignProcessToJobObject(m_job, m_pi.hProcess))
+	{
+		std::wstring msg = std::format(L"AssignProcessToJobObject failed, err: {}", ::GetLastError());
 		OutputDebugStringW(msg.c_str());
 		return false;
 	}
