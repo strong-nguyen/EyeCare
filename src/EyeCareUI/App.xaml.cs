@@ -18,6 +18,8 @@ namespace EyeCareUI
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            base.OnStartup(e);
+
             var serviceCollections = new ServiceCollection();
 
             // Views
@@ -70,6 +72,8 @@ namespace EyeCareUI
 
             //var mainWnd = Ioc.Default.GetRequiredService<MainWindow>();
             //mainWnd.Show();
+
+            this.ShutdownMode = ShutdownMode.OnExplicitShutdown;
         }
 
         protected override void OnExit(ExitEventArgs e)

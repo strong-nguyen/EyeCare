@@ -125,12 +125,14 @@ LRESULT CEyeCareDlg::OnSystemTrayCallback(WPARAM wParam, LPARAM lParam)
 
 void CEyeCareDlg::QuitEyeCare()
 {
+	CommonLib::log(L"UI").Info(L"User clicked Quit");
 	BOOL ret = m_trayNoti.SendCloseNoti();
 	DestroyWindow();
 }
 
 void CEyeCareDlg::ShowSettingDlg()
 {
+	CommonLib::log(L"UI").Info(L"User clicked Setting");
 	if (PipeClient client; client.Connect(L"EyeCareUIPipe"))
 	{
 		client.Notify("showSettingWindow");
@@ -139,6 +141,7 @@ void CEyeCareDlg::ShowSettingDlg()
 
 void CEyeCareDlg::ShowCountdownDlg()
 {
+	CommonLib::log(L"UI").Info(L"User clicked Take A Break");
 	if (PipeClient client; client.Connect(L"EyeCareUIPipe"))
 	{
 		client.Notify("showCountdownWindow");
@@ -147,6 +150,7 @@ void CEyeCareDlg::ShowCountdownDlg()
 
 void CEyeCareDlg::ShowAboutDlg()
 {
+	CommonLib::log(L"UI").Info(L"User clicked About");
 	if (PipeClient client; client.Connect(L"EyeCareUIPipe"))
 	{
 		client.Notify("showAboutWindow");
