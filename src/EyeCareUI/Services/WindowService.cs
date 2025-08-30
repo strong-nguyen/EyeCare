@@ -41,10 +41,10 @@ namespace EyeCareUI.Services
             if (isShow)
             {
                 wnd.Show();
-                wnd.WindowState = WindowState.Normal;
-                wnd.Topmost = true; // Temporarily force it on top
-                wnd.Topmost = false; // Reset to normal behavior
-                wnd.Activate();    // Give it focus
+                //wnd.WindowState = WindowState.Normal;
+                //wnd.Topmost = true; // Temporarily force it on top
+                //wnd.Topmost = false; // Reset to normal behavior
+                //wnd.Activate();    // Give it focus
             }
             else
             {

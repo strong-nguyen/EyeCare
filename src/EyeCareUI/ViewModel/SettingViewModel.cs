@@ -165,12 +165,12 @@ namespace EyeCareUI.ViewModel
                     if (isAutoStart)
                     {
                         // Set a value inside the key
-                        key.SetValue("EyeCare", @"C:\Users\trong\Documents\Projects\EyeCare\src\EyeCare\x64\Debug\EyeCare.exe", RegistryValueKind.String);
+                        key.SetValue(TakeABreakDefine.AppName, TakeABreakDefine.TakeABreakExeInstallPath, RegistryValueKind.String);
                         return true;
                     }
                     else
                     {
-                        key.DeleteValue("EyeCare", throwOnMissingValue: false);
+                        key.DeleteValue(TakeABreakDefine.AppName, throwOnMissingValue: false);
                         return true;
                     }
                 }

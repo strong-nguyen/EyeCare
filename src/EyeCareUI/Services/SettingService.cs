@@ -24,7 +24,7 @@ namespace EyeCareUI.Services
         {
             _settings = new SettingModel();
             string localAppDataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            var configFile = Path.Combine(localAppDataPath, "EyeCare\\config.ini");
+            var configFile = Path.Combine(localAppDataPath, TakeABreakDefine.AppName, TakeABreakDefine.ConfigFileName);
             _iniFile = new IniFile(configFile);
 
             ReadConfig();

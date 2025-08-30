@@ -19,6 +19,8 @@ class CEyeCareDlg : public CDialogEx
 public:
 	CEyeCareDlg(CWnd* pParent = nullptr);	// standard constructor
 
+	BOOL PreTranslateMessage(MSG* pMsg) override;  // Override to ignore ESC key pressed
+
 // Dialog Data
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_EYEBREAK_DIALOG };
@@ -26,7 +28,6 @@ public:
 
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
-
 
 // Implementation
 protected:

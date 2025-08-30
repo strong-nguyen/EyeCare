@@ -41,6 +41,16 @@ BEGIN_MESSAGE_MAP(CEyeCareDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 
+BOOL CEyeCareDlg::PreTranslateMessage(MSG* pMsg)
+{
+	if (pMsg->message == WM_KEYDOWN && pMsg->wParam == VK_ESCAPE)
+	{
+		// Suppress default Esc behavior
+		return TRUE; // Handled
+	}
+	return CDialog::PreTranslateMessage(pMsg);
+}
+
 // CEyeCareDlg message handlers
 
 BOOL CEyeCareDlg::OnInitDialog()

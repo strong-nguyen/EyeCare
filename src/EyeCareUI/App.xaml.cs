@@ -8,6 +8,7 @@ using PipeCS;
 using EyeCareUI.View;
 using System.Collections.Concurrent;
 using EyeCareUI.Services;
+using EyeCareUI.Model;
 
 namespace EyeCareUI
 {
@@ -44,7 +45,7 @@ namespace EyeCareUI
             var timerService = Ioc.Default.GetRequiredService<TimerService>();
             timerService.OnStartApp();
 
-            _pipeServer = new PipeServer("EyeCareUIPipe", (string message)=>
+            _pipeServer = new PipeServer(TakeABreakDefine.PipeServerName, (string message)=>
             {
                 _pipeMessages.Enqueue(message);
                 _pipeEvent.Set();
@@ -69,9 +70,6 @@ namespace EyeCareUI
                     }
                 }
             });
-
-            //var mainWnd = Ioc.Default.GetRequiredService<MainWindow>();
-            //mainWnd.Show();
 
             this.ShutdownMode = ShutdownMode.OnExplicitShutdown;
         }
