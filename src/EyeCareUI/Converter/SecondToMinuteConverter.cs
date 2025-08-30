@@ -17,9 +17,9 @@ namespace EyeCareUI.Converter
             int minutes = second / 60;
 
             string formatedTime;
-            if (minutes == 0)
+            if (minutes < 10)
             {
-                formatedTime = $"00:{remainSecond:D2}";
+                formatedTime = $"{minutes:D2}:{remainSecond:D2}";
             }
             else
             {
