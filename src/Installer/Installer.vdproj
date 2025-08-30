@@ -111,6 +111,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_CD9F1014942B4224B3B8B3498D730533"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_D02B93DDCF0E64502438D9DB589B8B19"
         "OwnerKey" = "8:_8D1AE565E8BC4960A8CDED1B4143E4CD"
         "MsmSig" = "8:_UNDEFINED"
@@ -161,6 +167,12 @@
         {
         "MsmKey" = "8:_FF66E5B1E7484A75943B9D418FF45810"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_CD9F1014942B4224B3B8B3498D730533"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -217,6 +229,20 @@
             "InstallerClass" = "11:FALSE"
             "CustomActionData" = "8:"
             }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_BA3DB08A959242BC861646EA2625759B"
+            {
+            "Name" = "8:Uninstaller.dll"
+            "Condition" = "8:"
+            "Object" = "8:_CD9F1014942B4224B3B8B3498D730533"
+            "FileType" = "3:1"
+            "InstallAction" = "3:4"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_5E77BAEF_1608_47DA_BFDD_59646CFE1D2A"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
         }
         "DefaultFeature"
         {
@@ -228,6 +254,14 @@
         {
             "LaunchCondition"
             {
+                "{A06ECF26-33A3-4562-8140-9B0E340D4F24}:_71AA4B23C47F4E8FB62BC57AEB121E69"
+                {
+                "Name" = "8:.NET Framework"
+                "Message" = "8:[VSDNETMSG]"
+                "FrameworkVersion" = "8:.NETFramework,Version=v4.7.2"
+                "AllowLaterVersions" = "11:FALSE"
+                "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=863262"
+                }
             }
         }
         "File"
@@ -532,6 +566,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CD9F1014942B4224B3B8B3498D730533"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Uninstaller, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_CD9F1014942B4224B3B8B3498D730533"
+                    {
+                    "Name" = "8:Uninstaller.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\Uninstaller\\bin\\Release\\Uninstaller.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_DDB1EFB98ED64ED08BEF8137642A1000"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D02B93DDCF0E64502438D9DB589B8B19"
             {
             "SourcePath" = "8:api-ms-win-crt-filesystem-l1-1-0.dll"
@@ -769,7 +834,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Take A Break"
         "ProductCode" = "8:{C5378B5E-4624-4AAC-91CD-78938CF2ECC3}"
-        "PackageCode" = "8:{089D4542-1C1B-4D09-B4C4-F1E3E012D603}"
+        "PackageCode" = "8:{F4D3BE66-979F-453E-B101-9F04FDD7D38C}"
         "UpgradeCode" = "8:{9218816C-EEB3-40D3-8871-52E4D03BE117}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
