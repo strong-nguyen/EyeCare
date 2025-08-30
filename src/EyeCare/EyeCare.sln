@@ -22,6 +22,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EyeCareUI", "..\EyeCareUI\E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipeCS", "..\PipeCS\PipeCS.csproj", "{0FD76080-1DD7-4CB0-8B05-E3C12052312B}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Installer", "..\Installer\Installer.vdproj", "{1789976E-B5FE-4795-86EC-7C1108E26348}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Launcher", "..\Launcher\Launcher.vcxproj", "{EAD2D95D-05DB-4E5F-AD5D-74C46D45BA43}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -70,6 +74,18 @@ Global
 		{0FD76080-1DD7-4CB0-8B05-E3C12052312B}.Release|x64.Build.0 = Release|Any CPU
 		{0FD76080-1DD7-4CB0-8B05-E3C12052312B}.Release|x86.ActiveCfg = Release|Any CPU
 		{0FD76080-1DD7-4CB0-8B05-E3C12052312B}.Release|x86.Build.0 = Release|Any CPU
+		{1789976E-B5FE-4795-86EC-7C1108E26348}.Debug|x64.ActiveCfg = Debug
+		{1789976E-B5FE-4795-86EC-7C1108E26348}.Debug|x86.ActiveCfg = Debug
+		{1789976E-B5FE-4795-86EC-7C1108E26348}.Release|x64.ActiveCfg = Release
+		{1789976E-B5FE-4795-86EC-7C1108E26348}.Release|x86.ActiveCfg = Release
+		{EAD2D95D-05DB-4E5F-AD5D-74C46D45BA43}.Debug|x64.ActiveCfg = Debug|x64
+		{EAD2D95D-05DB-4E5F-AD5D-74C46D45BA43}.Debug|x64.Build.0 = Debug|x64
+		{EAD2D95D-05DB-4E5F-AD5D-74C46D45BA43}.Debug|x86.ActiveCfg = Debug|Win32
+		{EAD2D95D-05DB-4E5F-AD5D-74C46D45BA43}.Debug|x86.Build.0 = Debug|Win32
+		{EAD2D95D-05DB-4E5F-AD5D-74C46D45BA43}.Release|x64.ActiveCfg = Release|x64
+		{EAD2D95D-05DB-4E5F-AD5D-74C46D45BA43}.Release|x64.Build.0 = Release|x64
+		{EAD2D95D-05DB-4E5F-AD5D-74C46D45BA43}.Release|x86.ActiveCfg = Release|Win32
+		{EAD2D95D-05DB-4E5F-AD5D-74C46D45BA43}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

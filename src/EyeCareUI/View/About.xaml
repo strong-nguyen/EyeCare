@@ -27,7 +27,7 @@
         <TextBlock Text="Version: " FontSize="14"/>
         <TextBlock Text="{Binding Version}"  FontSize="14"/>
       </StackPanel>
-      <TextBlock Grid.Row="2" Text="Developed by Van-Trong Nguyen. All rights reserved." FontSize="14"/>
+      <TextBlock Grid.Row="2" Text="Developed by Nguyen Van Trong. All rights reserved." FontSize="14"/>
       <TextBlock FontStyle="Italic" FontSize="14" Grid.Row="3">
           It is totally free, no-ads and if you find it useful, you could buy me a coffee via VND or USDT addresses below:
       </TextBlock>

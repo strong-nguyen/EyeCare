@@ -46,7 +46,6 @@ bool UIProcessManager::InitJobObject()
 
 bool UIProcessManager::StartUIProcess()
 {
-#ifdef _DEBUG
 	TCHAR exe_path[MAX_PATH] = {};
 	DWORD length = GetModuleFileName(NULL, exe_path, MAX_PATH);
 	LPCWSTR process_name;
@@ -54,11 +53,15 @@ bool UIProcessManager::StartUIProcess()
 	if (length > 0)
 	{
 		ui_exe_path = exe_path;
+#ifdef _DEBUG
 		for (int i = 0; i < 4; ++i)
 		{
 			ui_exe_path /= "..";
 		};
 		ui_exe_path = ui_exe_path / L"EyeCareUI\\bin\\Debug\\net8.0-windows" / Common::UI_EXE_NAME;
+#else
+		ui_exe_path = ui_exe_path / L".." / Common::UI_EXE_NAME;
+#endif
 
 		process_name = ui_exe_path.c_str();
 	}
@@ -67,9 +70,6 @@ bool UIProcessManager::StartUIProcess()
 		CommonLib::log(L"UI").Error(L"GetModuleFileName failed");
 		return false;
 	}
-#else
-	LPCWSTR process_name = Common::UI_EXE_NAME;
-#endif
 
 	STARTUPINFO start_info{};
 	start_info.cb = sizeof(STARTUPINFO);
