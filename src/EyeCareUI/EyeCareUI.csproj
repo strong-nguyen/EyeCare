@@ -13,8 +13,6 @@
     <None Remove="Assets\TakeABreak.ico" />
     <None Remove="Images\tpb.jpeg" />
     <None Remove="Images\usdt.jpeg" />
-    <None Remove="View\tpb.jpeg" />
-    <None Remove="View\usdt.jpeg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,13 +30,11 @@
 
   <ItemGroup>
     <Resource Include="Images\tpb.jpeg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\usdt.jpeg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="View\tpb.jpeg" />
-    <Resource Include="View\usdt.jpeg" />
   </ItemGroup>
 
 </Project>

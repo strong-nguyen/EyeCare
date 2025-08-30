@@ -27,7 +27,7 @@
         <TextBlock Text="Version: " FontSize="14"/>
         <TextBlock Text="{Binding Version}"  FontSize="14"/>
       </StackPanel>
-      <TextBlock Grid.Row="2" Text="Developed by Van-Trong Nguyen" FontSize="14"/>
+      <TextBlock Grid.Row="2" Text="Developed by Van-Trong Nguyen. All rights reserved." FontSize="14"/>
       <TextBlock FontStyle="Italic" FontSize="14" Grid.Row="3">
           It is totally free, no-ads and if you find it useful, you could buy me a coffee via VND or USDT addresses below:
       </TextBlock>
@@ -46,9 +46,9 @@
         <ColumnDefinition Width="*"/>
       </Grid.ColumnDefinitions>
       <TextBlock Grid.Row="0" Grid.Column="0" Text="Vietnam Bank Transfer" TextAlignment="Center" FontWeight="Bold"/>
-      <Image Grid.Row="1" Grid.Column="0" Source="/View/tpb.jpeg"></Image>
+      <Image Grid.Row="1" Grid.Column="0" Source="pack://application:,,,/Images/tpb.jpeg"></Image>
       <TextBlock Grid.Row="0" Grid.Column="1" Text="USDT via BNB Smart Chain (BEP20)" TextAlignment="Center" FontWeight="Bold"/>
-      <Image Grid.Row="1" Grid.Column="1" Source="/View/usdt.jpeg"></Image>
+      <Image Grid.Row="1" Grid.Column="1" Source="pack://application:,,,/Images/usdt.jpeg"></Image>
     </Grid>
   </Grid>
 </Window>
