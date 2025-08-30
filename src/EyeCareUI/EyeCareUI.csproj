@@ -7,6 +7,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Assets\TakeABreak.ico</ApplicationIcon>
+    <AssemblyName>TakeABreakUI</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

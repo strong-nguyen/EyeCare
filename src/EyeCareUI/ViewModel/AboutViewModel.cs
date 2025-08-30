@@ -12,7 +12,7 @@ namespace EyeCareUI.ViewModel
     {
         public Action? CloseAction { get; set; }
 
-        public string Version => "1.0.0.0";
+        public string Version => "1.0.0.1";
 
         [RelayCommand]
         private void ThankYou()

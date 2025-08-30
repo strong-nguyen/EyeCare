@@ -6,11 +6,13 @@
 // Common functions
 namespace Common
 {
-	static LPCWSTR UI_PIPE_NAME = L"EyeCareUIPipe";
+	static LPCWSTR APP_NAME = L"TakeABreak";
 
-	static LPCWSTR PROCESS_JOB_OBJECT_NAME = L"EyeCareJob";
+	static LPCWSTR UI_PIPE_NAME = L"TakeABreakUIPipe";
 
-	static LPCWSTR UI_EXE_NAME = L"EyeCareUI.exe";
+	static LPCWSTR PROCESS_JOB_OBJECT_NAME = L"TakeABreakJob";
+
+	static LPCWSTR UI_EXE_NAME = L"TakeABreakUI.exe";
 
 	std::wstring FormatTime(long seconds);
 

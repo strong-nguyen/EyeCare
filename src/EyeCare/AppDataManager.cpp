@@ -29,7 +29,7 @@ void AppDataManager::InitializeAppData()
 	{
 		std::wstring localapp_data_path = path;
 		CoTaskMemFree(path);
-		m_appdata_path = std::filesystem::path(localapp_data_path) / L"EyeCare";
+		m_appdata_path = std::filesystem::path(localapp_data_path) / Common::APP_NAME;
 		std::error_code ec;
 		if (!std::filesystem::exists(m_appdata_path) && !std::filesystem::create_directory(m_appdata_path, ec))
 		{
