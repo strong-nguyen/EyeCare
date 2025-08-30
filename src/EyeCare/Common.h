@@ -8,6 +8,10 @@ namespace Common
 {
 	static LPCWSTR UI_PIPE_NAME = L"EyeCareUIPipe";
 
+	static LPCWSTR PROCESS_JOB_OBJECT_NAME = L"EyeCareJob";
+
+	static LPCWSTR UI_EXE_NAME = L"EyeCareUI.exe";
+
 	std::wstring FormatTime(long seconds);
 
 	template <typename ...Args>

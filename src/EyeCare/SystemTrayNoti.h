@@ -7,6 +7,8 @@ class SystemTrayNoti
 public:
 	SystemTrayNoti();
 
+	~SystemTrayNoti();
+
 	void Setup(HWND listenWnd, UINT callbackMessage);
 
 	BOOL SendStartNoti();

@@ -26,7 +26,7 @@ UIProcessManager::~UIProcessManager()
 
 bool UIProcessManager::InitJobObject()
 {
-	m_job = ::CreateJobObject(nullptr, L"EyeCareJob");
+	m_job = ::CreateJobObject(nullptr, Common::PROCESS_JOB_OBJECT_NAME);
 	if (m_job == nullptr)
 	{
 		CommonLib::log(L"UI").Error(L"CreateJobObject failed, ec: %d", ::GetLastError());
@@ -49,7 +49,7 @@ bool UIProcessManager::StartUIProcess()
 #ifdef _DEBUG
 	TCHAR exe_path[MAX_PATH] = {};
 	DWORD length = GetModuleFileName(NULL, exe_path, MAX_PATH);
-	LPCWSTR process_name = L"..\\EyeCareUI\\bin\\Debug\\net8.0-windows\\EyeCareUI.exe";
+	LPCWSTR process_name;
 	std::filesystem::path ui_exe_path;
 	if (length > 0)
 	{
@@ -58,16 +58,17 @@ bool UIProcessManager::StartUIProcess()
 		{
 			ui_exe_path /= "..";
 		};
-		ui_exe_path = ui_exe_path / "EyeCareUI\\bin\\Debug\\net8.0-windows\\EyeCareUI.exe";
+		ui_exe_path = ui_exe_path / L"EyeCareUI\\bin\\Debug\\net8.0-windows" / Common::UI_EXE_NAME;
 
 		process_name = ui_exe_path.c_str();
 	}
 	else
 	{
 		CommonLib::log(L"UI").Error(L"GetModuleFileName failed");
+		return false;
 	}
 #else
-	LPCWSTR process_name = L"EyeCareUI.exe";
+	LPCWSTR process_name = Common::UI_EXE_NAME;
 #endif
 
 	STARTUPINFO start_info{};

@@ -11,6 +11,11 @@ SystemTrayNoti::SystemTrayNoti()
 
 }
 
+SystemTrayNoti::~SystemTrayNoti()
+{
+	m_listenWnd = nullptr;
+}
+
 void SystemTrayNoti::Setup(HWND listenWnd, UINT callbackMessage)
 {
 	m_listenWnd = listenWnd;
