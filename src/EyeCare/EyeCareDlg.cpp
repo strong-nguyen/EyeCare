@@ -12,6 +12,7 @@
 
 #include <PipeClient.h>
 #include <Logger.h>
+#include "UIProcessManager.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -100,6 +101,7 @@ HCURSOR CEyeCareDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+// Handle event when user interact on tray icon
 LRESULT CEyeCareDlg::OnSystemTrayCallback(WPARAM wParam, LPARAM lParam)
 {
 	switch (LOWORD(lParam))
@@ -127,34 +129,26 @@ void CEyeCareDlg::QuitEyeCare()
 {
 	CommonLib::log(L"UI").Info(L"User clicked Quit");
 	BOOL ret = m_trayNoti.SendCloseNoti();
-	DestroyWindow();
+
+	PostMessage(WM_CLOSE);
 }
 
 void CEyeCareDlg::ShowSettingDlg()
 {
 	CommonLib::log(L"UI").Info(L"User clicked Setting");
-	if (PipeClient client; client.Connect(L"EyeCareUIPipe"))
-	{
-		client.Notify("showSettingWindow");
-	}
+	UIProcessManager::NotifyUIProcess("showSettingWindow");
 }
 
 void CEyeCareDlg::ShowCountdownDlg()
 {
 	CommonLib::log(L"UI").Info(L"User clicked Take A Break");
-	if (PipeClient client; client.Connect(L"EyeCareUIPipe"))
-	{
-		client.Notify("showCountdownWindow");
-	}
+	UIProcessManager::NotifyUIProcess("showCountdownWindow");
 }
 
 void CEyeCareDlg::ShowAboutDlg()
 {
 	CommonLib::log(L"UI").Info(L"User clicked About");
-	if (PipeClient client; client.Connect(L"EyeCareUIPipe"))
-	{
-		client.Notify("showAboutWindow");
-	}
+	UIProcessManager::NotifyUIProcess("showAboutWindow");
 }
 
 LRESULT CEyeCareDlg::OnClickEyeCareMenu(WPARAM wParam, LPARAM lParam)

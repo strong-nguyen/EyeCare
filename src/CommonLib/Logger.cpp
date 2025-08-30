@@ -33,7 +33,7 @@ namespace CommonLib
 	{
 		std::time_t currentTime = std::time(nullptr);
 		tm* localTime = std::localtime(&currentTime);
-		std::wstring logFileName = std::format(L"{:02}-{:02}-{}.log", localTime->tm_mday, localTime->tm_mon, localTime->tm_year + 1900);
+		std::wstring logFileName = std::format(L"{:02}-{:02}-{}.log", localTime->tm_mday, localTime->tm_mon + 1, localTime->tm_year + 1900);
 		std::filesystem::path logFilePath = m_rootPath / logFileName;
 
 		std::lock_guard lock(s_logMutex);

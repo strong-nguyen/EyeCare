@@ -4,6 +4,7 @@
 #include <format>
 #include <filesystem>
 #include <Logger.h>
+#include "Common.h"
 
 
 UIProcessManager* UIProcessManager::GetInstance()
@@ -108,13 +109,7 @@ bool UIProcessManager::StopUIProcess()
 		bool is_ui_process_quit = false;
 		do
 		{
-			PipeClient client;
-			if (!client.Connect(L"EyeCareUIPipe"))
-			{
-				break;
-			}
-
-			if (!client.Notify("quit"))
+			if (!UIProcessManager::NotifyUIProcess("quit"))
 			{
 				break;
 			}
@@ -141,4 +136,26 @@ bool UIProcessManager::StopUIProcess()
 	}
 
 	return ret;
+}
+
+bool UIProcessManager::NotifyUIProcess(const std::string& message)
+{
+	CStringA msg = message.c_str();
+	if (PipeClient client; client.Connect(Common::UI_PIPE_NAME))
+	{
+		if (client.Notify(message))
+		{
+			return true;
+		}
+		else
+		{
+			CommonLib::log(L"Pipe").Error(L"Failed to notify pipe: %s, msg: %s", Common::UI_PIPE_NAME, CStringW(msg).GetString());
+		}
+	}
+	else
+	{
+		CommonLib::log(L"Pipe").Error(L"Failed to connect pipe: %s, msg: %s", Common::UI_PIPE_NAME, CStringW(msg).GetString());
+	}
+
+	return false;
 }

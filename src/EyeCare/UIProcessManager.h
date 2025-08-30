@@ -10,6 +10,8 @@ public:
 
 	bool StopUIProcess();
 
+	static bool NotifyUIProcess(const std::string& message);
+
 private:
 	UIProcessManager();
 

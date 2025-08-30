@@ -6,6 +6,8 @@
 // Common functions
 namespace Common
 {
+	static LPCWSTR UI_PIPE_NAME = L"EyeCareUIPipe";
+
 	std::wstring FormatTime(long seconds);
 
 	template <typename ...Args>
