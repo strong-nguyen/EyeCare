@@ -51,6 +51,13 @@ BOOL CEyeCareApp::InitInstance()
 {
 	CWinApp::InitInstance();
 
+	HANDLE appEvent = ::CreateEventW(nullptr, FALSE, TRUE, L"TakeABreakApp");
+	if (appEvent != nullptr && ::GetLastError() == ERROR_ALREADY_EXISTS)
+	{
+		// Block multiple instances of process
+		::CloseHandle(appEvent);
+		return FALSE;
+	}
 
 	// Create the shell manager, in case the dialog contains
 	// any shell tree view or shell list view controls.
@@ -88,6 +95,8 @@ BOOL CEyeCareApp::InitInstance()
 		INT_PTR nResponse = dlg.RunModalLoop();
 	}
 
+	UIProcessManager::GetInstance()->StopUIProcess();
+
 	// Delete the shell manager created above.
 	if (pShellManager != nullptr)
 	{
@@ -98,6 +107,8 @@ BOOL CEyeCareApp::InitInstance()
 	ControlBarCleanUp();
 #endif
 
+	::CloseHandle(appEvent);
+
 	// Since the dialog has been closed, return FALSE so that we exit the
 	//  application, rather than start the application's message pump.
 	return FALSE;
@@ -105,7 +116,6 @@ BOOL CEyeCareApp::InitInstance()
 
 BOOL CEyeCareApp::ExitInstance()
 {
-	UIProcessManager::GetInstance()->StopUIProcess();
 	return CWinApp::ExitInstance();
 }
 
