@@ -41,7 +41,6 @@ void LaunchTakeABreak()
 {
 	STARTUPINFO si = {};
 	si.cb = sizeof(STARTUPINFO);
-	PROCESS_INFORMATION pi;
 
 	LPCWSTR appPath = L"\"C:\\Program Files\\TakeABreak\\TakeABreak.exe\"";
 
