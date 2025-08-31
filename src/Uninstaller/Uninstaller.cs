@@ -21,7 +21,7 @@ namespace Uninstaller
 
         private void StopApplication()
         {
-            string processName = "Take A Break";
+            string processName = "TakeABreak";
 
             foreach (Process proc in Process.GetProcessesByName(processName))
             {
@@ -57,7 +57,7 @@ namespace Uninstaller
         private void DeleteShortcuts()
         {
             string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            string startMenuPath = Environment.GetFolderPath(Environment.SpecialFolder.StartMenu);
+            string startMenuPath = Environment.GetFolderPath(Environment.SpecialFolder.Programs);
 
             List<string> shortcutPaths = new List<string>();
             shortcutPaths.Add(Path.Combine(desktopPath, "Take A Break.lnk"));

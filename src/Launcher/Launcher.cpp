@@ -71,7 +71,7 @@ int main()
 	CreateShortcut(TakeABreakExePath, desktopShortcut, L"Launch Take A Break application", TakeABreakExePath);
 	CreateShortcut(TakeABreakExePath, startMenuShortcut, L"Launch Take A Break application", TakeABreakExePath);
 
-	LaunchTakeABreak();
+	//LaunchTakeABreak();  There is a bug that wallpaper is failed to read, therefore, this is disabled!
 
 	return 0;
 }

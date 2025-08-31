@@ -16,151 +16,145 @@
         "Entry"
         {
         "MsmKey" = "8:_22B01F5C23F1FC92FC8D1395D86CBB85"
-        "OwnerKey" = "8:_E9E40AB9331D44719C189FDAA81A1001"
+        "OwnerKey" = "8:_B46AB437AAF74FAC84AEE7FF35FA1EAB"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_2EA0A916D6B748BE9DE373D68B4E5D0F"
+        "MsmKey" = "8:_2EE26AC578F54AA1B4C415236B3C4D99"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_3BA43B43CFCDCA1B3E780EA173C6ECA1"
-        "OwnerKey" = "8:_E9E40AB9331D44719C189FDAA81A1001"
+        "OwnerKey" = "8:_B46AB437AAF74FAC84AEE7FF35FA1EAB"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_3CEA02F5590AA18D5BB1B88DC7072FCE"
-        "OwnerKey" = "8:_E9E40AB9331D44719C189FDAA81A1001"
+        "OwnerKey" = "8:_B46AB437AAF74FAC84AEE7FF35FA1EAB"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3CEEE67A10734E13AC6D4970FDD95FDF"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_415E96B46D0A1E56FE33FF3B47C756EE"
-        "OwnerKey" = "8:_E9E40AB9331D44719C189FDAA81A1001"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_58784388C71444C798614C4A58C1FFB8"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_5F7974FB2DA44C2AA6F8EBF1BE7CFE60"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_67C8459225104041A0830F8890322A5B"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_7527F0E52D73465885F376451D0C0EF8"
-        "OwnerKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_B46AB437AAF74FAC84AEE7FF35FA1EAB"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_7EBD158B335F4BFAE81DFCF938062E9B"
-        "OwnerKey" = "8:_E9E40AB9331D44719C189FDAA81A1001"
+        "OwnerKey" = "8:_B46AB437AAF74FAC84AEE7FF35FA1EAB"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_80A302E639274C7BA589AB93ECE455EC"
+        "MsmKey" = "8:_82060410709B4DCE90E0AC3DE2888428"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_84FABD9CD2876CD184F32507EED754D5"
-        "OwnerKey" = "8:_E9E40AB9331D44719C189FDAA81A1001"
+        "OwnerKey" = "8:_B46AB437AAF74FAC84AEE7FF35FA1EAB"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_97A269346F254CF681348525C71ED5C3"
+        "MsmKey" = "8:_B445DC20D0424D80940A7A22478E83E8"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_A9B7BC8559314E988704EA9FB2DB2B4D"
+        "MsmKey" = "8:_B46AB437AAF74FAC84AEE7FF35FA1EAB"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_C0DEFEC5F2DD4067BCE9FB2311138647"
+        "MsmKey" = "8:_B60CA14FF3EC4674803BB157762C1BE6"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_CBBB5603C0A6479F8D867C726C0039A5"
+        "MsmKey" = "8:_BBAE1C2B7BBB4CCAA6A7E79432A89682"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_D02B93DDCF0E64502438D9DB589B8B19"
-        "OwnerKey" = "8:_E9E40AB9331D44719C189FDAA81A1001"
+        "OwnerKey" = "8:_B46AB437AAF74FAC84AEE7FF35FA1EAB"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_D04A69DF525F4E042BBE8B493ABFE916"
-        "OwnerKey" = "8:_E9E40AB9331D44719C189FDAA81A1001"
+        "OwnerKey" = "8:_B46AB437AAF74FAC84AEE7FF35FA1EAB"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_D7FD83770A761013D524EEF13113EB0F"
-        "OwnerKey" = "8:_E9E40AB9331D44719C189FDAA81A1001"
+        "OwnerKey" = "8:_B46AB437AAF74FAC84AEE7FF35FA1EAB"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_DFC587BCC1EB3F08B5F084625E4D8AAC"
-        "OwnerKey" = "8:_E9E40AB9331D44719C189FDAA81A1001"
+        "OwnerKey" = "8:_B46AB437AAF74FAC84AEE7FF35FA1EAB"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_E30A1EE85782D08D4E988D4F29A4E401"
-        "OwnerKey" = "8:_E9E40AB9331D44719C189FDAA81A1001"
+        "OwnerKey" = "8:_B46AB437AAF74FAC84AEE7FF35FA1EAB"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_E9E40AB9331D44719C189FDAA81A1001"
+        "MsmKey" = "8:_EB5AFDC1834B4E9B91319AFB5ECE9A1D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_F093CC073C5E4C5B9CBAE3176647785A"
+        "MsmKey" = "8:_EF9116A2EC304EB195F13674A1EAE0D7"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F0948195BDB040AE89808D2E1551A521"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_F1DB3498D049D6DC2258DF90CC81E378"
-        "OwnerKey" = "8:_E9E40AB9331D44719C189FDAA81A1001"
+        "OwnerKey" = "8:_B46AB437AAF74FAC84AEE7FF35FA1EAB"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F818E3F3D5824BC5BEF38802E16ABB6D"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_CBBB5603C0A6479F8D867C726C0039A5"
+        "OwnerKey" = "8:_3CEEE67A10734E13AC6D4970FDD95FDF"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -227,31 +221,31 @@
     {
         "CustomAction"
         {
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_6AD4C3A8299D492C9999E2C3357A14A5"
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_64EF26AAF8F545CBBADDBCD13FE5E1F3"
             {
             "Name" = "8:Uninstaller.dll"
             "Condition" = "8:"
-            "Object" = "8:_CBBB5603C0A6479F8D867C726C0039A5"
+            "Object" = "8:_3CEEE67A10734E13AC6D4970FDD95FDF"
             "FileType" = "3:1"
             "InstallAction" = "3:4"
             "Arguments" = "8:"
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
-            "Identifier" = "8:_AFBE761E_1018_43F2_80AE_589F51A90CC4"
+            "Identifier" = "8:_23FE822F_8804_471D_814A_9DCBE9E0514A"
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:"
             }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_FFB9447DA8B246489DFA9144FFEA848F"
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_7490ED7DAD774CFCB992ECC4F4D78AFF"
             {
             "Name" = "8:Launcher.exe"
             "Condition" = "8:"
-            "Object" = "8:_5F7974FB2DA44C2AA6F8EBF1BE7CFE60"
+            "Object" = "8:_F818E3F3D5824BC5BEF38802E16ABB6D"
             "FileType" = "3:2"
             "InstallAction" = "3:2"
             "Arguments" = "8:/Commit"
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
-            "Identifier" = "8:_A67393A0_9422_469C_AE86_4388F4BD475E"
+            "Identifier" = "8:_2901A64C_981B_4C1E_938F_F24844742F90"
             "InstallerClass" = "11:FALSE"
             "CustomActionData" = "8:"
             }
@@ -298,10 +292,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2EA0A916D6B748BE9DE373D68B4E5D0F"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2EE26AC578F54AA1B4C415236B3C4D99"
             {
-            "SourcePath" = "8:..\\..\\1.0.0.1\\TakeABreak\\wpfgfx_cor3.dll"
-            "TargetName" = "8:wpfgfx_cor3.dll"
+            "SourcePath" = "8:..\\..\\1.0.0.1\\TakeABreak\\PenImc_cor3.dll"
+            "TargetName" = "8:PenImc_cor3.dll"
             "Tag" = "8:"
             "Folder" = "8:_DDB1EFB98ED64ED08BEF8137642A1000"
             "Condition" = "8:"
@@ -358,6 +352,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3CEEE67A10734E13AC6D4970FDD95FDF"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Uninstaller, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_3CEEE67A10734E13AC6D4970FDD95FDF"
+                    {
+                    "Name" = "8:Uninstaller.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\..\\1.0.0.1\\TakeABreak\\Uninstaller.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_DDB1EFB98ED64ED08BEF8137642A1000"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_415E96B46D0A1E56FE33FF3B47C756EE"
             {
             "SourcePath" = "8:api-ms-win-crt-stdio-l1-1-0.dll"
@@ -376,86 +401,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_58784388C71444C798614C4A58C1FFB8"
-            {
-            "SourcePath" = "8:..\\..\\1.0.0.1\\TakeABreak\\D3DCompiler_47_cor3.dll"
-            "TargetName" = "8:D3DCompiler_47_cor3.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_DDB1EFB98ED64ED08BEF8137642A1000"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5F7974FB2DA44C2AA6F8EBF1BE7CFE60"
-            {
-            "SourcePath" = "8:..\\..\\1.0.0.1\\TakeABreak\\Launcher.exe"
-            "TargetName" = "8:Launcher.exe"
-            "Tag" = "8:"
-            "Folder" = "8:_DDB1EFB98ED64ED08BEF8137642A1000"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_67C8459225104041A0830F8890322A5B"
-            {
-            "SourcePath" = "8:..\\..\\1.0.0.1\\TakeABreak\\TakeABreak.ico"
-            "TargetName" = "8:TakeABreak.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_DDB1EFB98ED64ED08BEF8137642A1000"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7527F0E52D73465885F376451D0C0EF8"
-            {
-            "SourcePath" = "8:..\\..\\1.0.0.1\\TakeABreak\\PenImc_cor3.dll"
-            "TargetName" = "8:PenImc_cor3.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_DDB1EFB98ED64ED08BEF8137642A1000"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7EBD158B335F4BFAE81DFCF938062E9B"
@@ -478,10 +423,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_80A302E639274C7BA589AB93ECE455EC"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_82060410709B4DCE90E0AC3DE2888428"
             {
-            "SourcePath" = "8:..\\..\\1.0.0.1\\TakeABreak\\PipeCS.dll.config"
-            "TargetName" = "8:PipeCS.dll.config"
+            "SourcePath" = "8:..\\..\\1.0.0.1\\TakeABreak\\PresentationNative_cor3.dll"
+            "TargetName" = "8:PresentationNative_cor3.dll"
             "Tag" = "8:"
             "Folder" = "8:_DDB1EFB98ED64ED08BEF8137642A1000"
             "Condition" = "8:"
@@ -518,10 +463,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_97A269346F254CF681348525C71ED5C3"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B445DC20D0424D80940A7A22478E83E8"
             {
-            "SourcePath" = "8:..\\..\\1.0.0.1\\TakeABreak\\TakeABreak.exe"
-            "TargetName" = "8:TakeABreak.exe"
+            "SourcePath" = "8:..\\..\\1.0.0.1\\TakeABreak\\PipeCS.dll.config"
+            "TargetName" = "8:PipeCS.dll.config"
             "Tag" = "8:"
             "Folder" = "8:_DDB1EFB98ED64ED08BEF8137642A1000"
             "Condition" = "8:"
@@ -538,61 +483,30 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A9B7BC8559314E988704EA9FB2DB2B4D"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B60CA14FF3EC4674803BB157762C1BE6"
+            {
+            "SourcePath" = "8:..\\..\\1.0.0.1\\TakeABreak\\wpfgfx_cor3.dll"
+            "TargetName" = "8:wpfgfx_cor3.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_DDB1EFB98ED64ED08BEF8137642A1000"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BBAE1C2B7BBB4CCAA6A7E79432A89682"
             {
             "SourcePath" = "8:..\\..\\1.0.0.1\\TakeABreak\\vcruntime140_cor3.dll"
             "TargetName" = "8:vcruntime140_cor3.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_DDB1EFB98ED64ED08BEF8137642A1000"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C0DEFEC5F2DD4067BCE9FB2311138647"
-            {
-            "SourcePath" = "8:..\\..\\1.0.0.1\\TakeABreak\\PresentationNative_cor3.dll"
-            "TargetName" = "8:PresentationNative_cor3.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_DDB1EFB98ED64ED08BEF8137642A1000"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CBBB5603C0A6479F8D867C726C0039A5"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Uninstaller, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_CBBB5603C0A6479F8D867C726C0039A5"
-                    {
-                    "Name" = "8:Uninstaller.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:..\\..\\1.0.0.1\\TakeABreak\\Uninstaller.dll"
-            "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_DDB1EFB98ED64ED08BEF8137642A1000"
             "Condition" = "8:"
@@ -709,10 +623,50 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F093CC073C5E4C5B9CBAE3176647785A"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EB5AFDC1834B4E9B91319AFB5ECE9A1D"
             {
             "SourcePath" = "8:..\\..\\1.0.0.1\\TakeABreak\\TakeABreakUI.exe"
             "TargetName" = "8:TakeABreakUI.exe"
+            "Tag" = "8:"
+            "Folder" = "8:_DDB1EFB98ED64ED08BEF8137642A1000"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EF9116A2EC304EB195F13674A1EAE0D7"
+            {
+            "SourcePath" = "8:..\\..\\1.0.0.1\\TakeABreak\\D3DCompiler_47_cor3.dll"
+            "TargetName" = "8:D3DCompiler_47_cor3.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_DDB1EFB98ED64ED08BEF8137642A1000"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F0948195BDB040AE89808D2E1551A521"
+            {
+            "SourcePath" = "8:..\\..\\1.0.0.1\\TakeABreak\\TakeABreak.ico"
+            "TargetName" = "8:TakeABreak.ico"
             "Tag" = "8:"
             "Folder" = "8:_DDB1EFB98ED64ED08BEF8137642A1000"
             "Condition" = "8:"
@@ -747,6 +701,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F818E3F3D5824BC5BEF38802E16ABB6D"
+            {
+            "SourcePath" = "8:..\\..\\1.0.0.1\\TakeABreak\\Launcher.exe"
+            "TargetName" = "8:Launcher.exe"
+            "Tag" = "8:"
+            "Folder" = "8:_DDB1EFB98ED64ED08BEF8137642A1000"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
         }
@@ -806,7 +780,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Take A Break"
         "ProductCode" = "8:{C5378B5E-4624-4AAC-91CD-78938CF2ECC3}"
-        "PackageCode" = "8:{4EF3F4AF-EBC4-46CD-9F91-CFC7D6C2CFDB}"
+        "PackageCode" = "8:{47573DCC-DD0D-4055-A0D8-5741623386FB}"
         "UpgradeCode" = "8:{9218816C-EEB3-40D3-8871-52E4D03BE117}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -823,7 +797,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:Take A Break"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:_67C8459225104041A0830F8890322A5B"
+        "ARPPRODUCTICON" = "8:_F0948195BDB040AE89808D2E1551A521"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -1318,7 +1292,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E9E40AB9331D44719C189FDAA81A1001"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_B46AB437AAF74FAC84AEE7FF35FA1EAB"
             {
             "SourcePath" = "8:..\\EyeCare\\x64\\Release\\TakeABreak.exe"
             "TargetName" = "8:"
