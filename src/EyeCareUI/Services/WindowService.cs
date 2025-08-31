@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.DependencyInjection;
 using EyeCareUI.View;
+using EyeCareUI.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +41,12 @@ namespace EyeCareUI.Services
 
             if (isShow)
             {
+                if (windowName == "CountdownWindow")  // Before show countdow, we should reset the countdown value
+                {
+                    var vm = Ioc.Default.GetRequiredService<CountdownViewModel>();
+                    vm.ResetCountdown();
+                }
+
                 wnd.Show();
                 //wnd.WindowState = WindowState.Normal;
                 //wnd.Topmost = true; // Temporarily force it on top

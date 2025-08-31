@@ -42,8 +42,6 @@ namespace EyeCareUI.Services
                 _countdownTimer.Stop();
                 _takeBreakTimer.Start();
 
-                countdownVM.ResetCountdown();
-
                Application.Current.Dispatcher.BeginInvoke(() =>
                 {
                     _windowService.ShowWindow("CountdownWindow", false);
