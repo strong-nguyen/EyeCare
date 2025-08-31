@@ -18,10 +18,15 @@ namespace EyeCareUI.Services
             switch (windowName)
             {
                 case "CountdownWindow":
+                    // Singleton
                     wnd = Ioc.Default.GetRequiredService<CountdownWindow>();
                     break;
                 case "AboutWindow":
-                    wnd = Ioc.Default.GetRequiredService<About>();
+                    wnd = Application.Current.Windows.OfType<About>().FirstOrDefault();
+                    if (wnd == null)
+                    {
+                        wnd = Ioc.Default.GetRequiredService<About>();
+                    }
                     break;
                 case "SettingWindow":
                     wnd = Application.Current.Windows.OfType<Setting>().FirstOrDefault();
@@ -48,14 +53,14 @@ namespace EyeCareUI.Services
                 }
 
                 wnd.Show();
-                //wnd.WindowState = WindowState.Normal;
-                //wnd.Topmost = true; // Temporarily force it on top
-                //wnd.Topmost = false; // Reset to normal behavior
-                //wnd.Activate();    // Give it focus
+                if (wnd.WindowState == WindowState.Minimized)
+                {
+                    wnd.Activate();
+                }
             }
             else
             {
-                if (windowName == "SettingWindow")
+                if (windowName == "SettingWindow" || windowName == "AboutWindow")
                 {
                     wnd?.Close();
                 }
