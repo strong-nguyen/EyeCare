@@ -29,7 +29,7 @@ namespace EyeCareUI.ViewModel
         [RelayCommand]
         private void ExitCountdown()
         {
-            _timerService.OnExitCountdown();
+            //_timerService.OnExitCountdown();
             _windowService.ShowWindow("CountdownWindow", false);
         }
 

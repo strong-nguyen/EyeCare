@@ -18,8 +18,11 @@ namespace EyeCareUI.Services
             switch (windowName)
             {
                 case "CountdownWindow":
-                    // Singleton
-                    wnd = Ioc.Default.GetRequiredService<CountdownWindow>();
+                    wnd = Application.Current.Windows.OfType<CountdownWindow>().FirstOrDefault();
+                    if (wnd == null)
+                    {
+                        wnd = Ioc.Default.GetRequiredService<CountdownWindow>();
+                    }
                     break;
                 case "AboutWindow":
                     wnd = Application.Current.Windows.OfType<About>().FirstOrDefault();
@@ -46,12 +49,6 @@ namespace EyeCareUI.Services
 
             if (isShow)
             {
-                if (windowName == "CountdownWindow")  // Before show countdow, we should reset the countdown value
-                {
-                    var vm = Ioc.Default.GetRequiredService<CountdownViewModel>();
-                    vm.ResetCountdown();
-                }
-
                 wnd.Show();
                 if (wnd.WindowState == WindowState.Minimized)
                 {
@@ -60,14 +57,7 @@ namespace EyeCareUI.Services
             }
             else
             {
-                if (windowName == "SettingWindow" || windowName == "AboutWindow")
-                {
-                    wnd?.Close();
-                }
-                else
-                {
-                    wnd?.Hide();
-                }
+                wnd?.Close();
             }
         }
     }

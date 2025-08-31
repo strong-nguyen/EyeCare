@@ -25,7 +25,7 @@ namespace EyeCareUI
 
             // Views
             serviceCollections.AddTransient<MainWindow>();
-            serviceCollections.AddSingleton<CountdownWindow>();
+            serviceCollections.AddTransient<CountdownWindow>();
             serviceCollections.AddTransient<About>();
             serviceCollections.AddTransient<Setting>();
 

@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.Win32;
 using System.IO;
+using EyeCareUI.Services;
 
 namespace EyeCareUI.View
 {
@@ -27,18 +28,24 @@ namespace EyeCareUI.View
         {
             InitializeComponent();
 
-            this.DataContext = Ioc.Default.GetRequiredService<CountdownViewModel>();
+            var vm = Ioc.Default.GetRequiredService<CountdownViewModel>();
+            vm.ResetCountdown();
+            this.DataContext = vm;
 
             WindowStyle = WindowStyle.None;          // Removes title bar and borders
             ResizeMode = ResizeMode.NoResize;        // Prevents resizing
             WindowState = WindowState.Maximized;     // Maximizes to full screen
             Topmost = true;
+
+            SetBackgroundImage();
+
+            this.Closed += CountdownWindow_Closed;
         }
 
-        protected override void OnActivated(EventArgs e)
+        private void CountdownWindow_Closed(object? sender, EventArgs e)
         {
-            base.OnActivated(e);
-            SetBackgroundImage();  // Set background image each time activated to ensure Wallpaper is updated
+            var timerService = Ioc.Default.GetRequiredService<TimerService>();
+            timerService.OnExitCountdown();
         }
 
         void SetBackgroundImage()
